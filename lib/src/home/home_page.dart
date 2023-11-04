@@ -1,7 +1,8 @@
 import 'package:dart_fusion/dart_fusion.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_landing_page/env/env.dart';
-import 'package:go_router/go_router.dart';
+import 'package:scroll_to_id/scroll_to_id.dart';
 
 part 'home_faq_section.dart';
 part 'home_features_section.dart';
@@ -19,52 +20,40 @@ class HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SelectionArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text('FLUTTER',
-                    style: context.text.titleLarge?.copyWith(
-                        color: context.color.background,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20.0)),
-                const Spacer(),
-                for (var navigation in Env.navigations)
-                  DButton.text(
-                    text: navigation.name,
-                    color: Colors.transparent,
-                    style: context.text.bodyMedium
-                        ?.copyWith(color: context.color.background),
-                    onTap: () => context.go('/?section=${navigation.id}'),
-                  )
-              ],
-            ),
-          ),
-        ),
-        backgroundColor: context.color.primary,
-        body: Background(child: Text('Test')),
-        // drawer: const AppDrawer(),
-        // body: InteractiveScrollViewer(
-        //     scrollToId: scroll,
-        //     scrollDirection: Axis.vertical,
-        //     children: [
-        //       StarterPage(scroll: scroll),
-        //       BenefitsPage(scroll: scroll),
-        //       PricingPage(scroll: scroll),
-        //     ].to((index, child) => ScrollContent(
-        //           id: AppPageModel.home.sections[index].id,
-        //           child: child,
-        //         ))
-        //       ..add(ScrollContent(
-        //         id: AppSectionModel.footer.id,
-        //         child: const AppFooter(),
-        //       )))
-      ),
+      child: Background(
+          child: Scaffold(
+              backgroundColor: Colors.transparent,
+              // drawer: const AppDrawer(),
+              body: CustomScrollView(
+                slivers: [
+                  SliverPersistentHeader(
+                    delegate: Header(),
+                    pinned: true,
+                  ),
+                  SliverToBoxAdapter(
+                    child: InteractiveScrollViewer(
+                        scrollToId: Env.controller.instance,
+                        scrollDirection: Axis.vertical,
+                        children:
+                            Env.navigations.to((index, item) => ScrollContent(
+                                id: item.id,
+                                child: index == 0
+                                    ? HomeStarterSection(
+                                        id: item.id,
+                                        title:
+                                            "Explore Key Features or Benefits",
+                                        subtitle:
+                                            "We've Solved Problem with Your Solution"
+                                            " - Making Your Life Easier. Get Ready for Our Upcoming Launch"
+                                            " - Something Amazing Awaits. Stay Informed.",
+                                      )
+                                    : Container(
+                                        height: context.height,
+                                        color: Colors.red,
+                                      )))),
+                  ),
+                ],
+              ))),
     );
   }
 }

@@ -1,26 +1,26 @@
 part of '../env.dart';
 
-class Navigation {
-  const Navigation({required this.id, required this.name});
+class NavigationModel {
+  const NavigationModel({required this.id, required this.name});
   final String id;
   final String name;
 
-  static const Navigation starter = Navigation(
+  static const NavigationModel starter = NavigationModel(
     id: 'get-started',
     name: 'Home',
   );
 
-  static const Navigation features = Navigation(
+  static const NavigationModel features = NavigationModel(
     id: 'features',
     name: 'Features',
   );
 
-  static const Navigation pricing = Navigation(
+  static const NavigationModel pricing = NavigationModel(
     id: 'pricing',
     name: 'Pricing',
   );
 
-  static const Navigation faq = Navigation(
+  static const NavigationModel faq = NavigationModel(
     id: 'faq',
     name: 'FAQ',
   );

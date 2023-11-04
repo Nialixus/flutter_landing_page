@@ -1,6 +1,8 @@
 part of '../env.dart';
 
 class Constants {
+  static const Duration duration = Duration(milliseconds: 300);
+  static const double padding = 20.0;
   static ThemeData lightTheme = ThemeData.light(useMaterial3: true).copyWith(
       dividerColor: Colors.transparent,
       textSelectionTheme: TextSelectionThemeData(
@@ -28,7 +30,7 @@ class Constants {
           )),
       colorScheme: const ColorScheme.light(
           error: Color(0xFFBF215A),
-          primary: Color(0xff2155bf),
+          primary: Color(0xff0D47A1),
           background: Colors.white,
           onPrimary: Colors.white,
           onBackground: Colors.black,
