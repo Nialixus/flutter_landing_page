@@ -32,31 +32,50 @@ class HomeStarterSection extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.all(Constants.padding),
                 child: Wrap(
-                    runSpacing: Constants.padding,
-                    spacing: Constants.padding,
+                    runSpacing: Constants.padding * 0.5,
+                    spacing: Constants.padding * 0.5,
                     runAlignment: WrapAlignment.center,
                     alignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     verticalDirection: VerticalDirection.down,
                     children: [
                       DTextArea(
-                          textAlign: TextAlign.center,
+                          isDense: false,
+                          textAlign: TextAlign.start,
+                          cursorColor: context.color.background,
+                          borderRadius:
+                              BorderRadius.circular(Constants.padding * 0.5),
+                          borderSideIdle: BorderSide.none,
                           backgroundColor:
-                              context.color.onBackground.withOpacity(0.1),
-                          hintText: 'Type Your Email to Join the Waitlist',
-                          hintStyle: context.text.bodySmall
-                              ?.copyWith(fontWeight: FontWeight.w500),
+                              context.color.onBackground.withOpacity(0.5),
+                          hintText: 'Enter Your Email Adress              ',
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: Constants.padding),
+                          textStyle: context.text.bodySmall?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: context.color.surface),
+                          hintStyle: context.text.bodySmall?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: context.color.surface.withOpacity(0.5)),
+                          borderSideActive: BorderSide(
+                            color: context.color.background.withOpacity(0.75),
+                          ),
                           placeholder: DButton.text(
-                            text: 'Type Your Email to Join the Waitlist',
-                            style: context.text.bodySmall
-                                ?.copyWith(fontWeight: FontWeight.w500),
-                            onTap: () {},
-                          )),
+                              text: 'Enter Your Email Adress              ',
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: Constants.padding,
+                                  vertical: Constants.padding * 0.75),
+                              style: context.text.bodySmall
+                                  ?.copyWith(fontWeight: FontWeight.w500),
+                              onTap: () {})),
                       DButton.text(
                           onTap: () {},
-                          text: 'SUBMIT',
+                          text: 'Join Waitlist',
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: Constants.padding,
+                              vertical: Constants.padding * 0.7),
                           style: context.text.bodySmall?.copyWith(
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             color: context.color.primary,
                           ),
                           borderRadius:

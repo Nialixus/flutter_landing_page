@@ -11,7 +11,7 @@ class Background extends StatelessWidget {
         Positioned.fill(child: ColoredBox(color: context.color.primary)),
         Positioned.fill(
             child: Opacity(
-                opacity: 0.35,
+                opacity: 0.25,
                 child: DImage(
                     source: 'assets/image/background.jpeg',
                     fit: BoxFit.cover,

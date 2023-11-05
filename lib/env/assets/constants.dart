@@ -1,6 +1,7 @@
 part of '../env.dart';
 
 class Constants {
+  static const Curve curve = Curves.easeInOut;
   static const Duration duration = Duration(milliseconds: 300);
   static const double padding = 20.0;
   static ThemeData lightTheme = ThemeData.light(useMaterial3: true).copyWith(

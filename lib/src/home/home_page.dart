@@ -9,29 +9,20 @@ part 'home_features_section.dart';
 part 'home_pricing_section.dart';
 part 'home_starter_section.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => HomeState();
-}
-
-class HomeState extends State<HomePage> {
-  @override
   Widget build(BuildContext context) {
     return SelectionArea(
-      child: Background(
-          child: Scaffold(
-              backgroundColor: Colors.transparent,
-              // drawer: const AppDrawer(),
-              body: CustomScrollView(
-                slivers: [
-                  SliverPersistentHeader(
-                    delegate: Header(),
-                    pinned: true,
-                  ),
-                  SliverToBoxAdapter(
-                    child: InteractiveScrollViewer(
+        child: Background(
+            child: Scaffold(
+                backgroundColor: Colors.transparent,
+                // drawer: const AppDrawer(),
+                body: NestedScrollView(
+                    headerSliverBuilder: (context, innerBoxIsScrolled) =>
+                        const [Header()],
+                    body: InteractiveScrollViewer(
                         scrollToId: Env.controller.instance,
                         scrollDirection: Axis.vertical,
                         children:
@@ -49,11 +40,9 @@ class HomeState extends State<HomePage> {
                                       )
                                     : Container(
                                         height: context.height,
-                                        color: Colors.red,
-                                      )))),
-                  ),
-                ],
-              ))),
-    );
+                                        color: index.isEven
+                                            ? Colors.transparent
+                                            : Colors.red,
+                                      ))))))));
   }
 }
