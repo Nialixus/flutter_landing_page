@@ -7,15 +7,24 @@ class NavigationController extends ValueNotifier<String> {
     BuildContext context, {
     required String id,
   }) {
-    value = id;
+    // [1] Get Scaffold
     final scaffold = Scaffold.of(context);
+
+    // [2] Close Drawer
     if (scaffold.hasDrawer && scaffold.isDrawerOpen) scaffold.closeDrawer();
+
+    // [3] Navigate to The Section of ID
     context.go('/?section=$id');
+
+    // [4] Animate Scroll to The Section of ID
     instance.animateTo(
       id,
       duration: Constants.duration,
       curve: Constants.curve,
     );
+
+    // [5] Update Controller Value
+    value = id;
   }
 
   ScrollToId instance = ScrollToId(scrollController: ScrollController());

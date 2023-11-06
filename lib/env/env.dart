@@ -10,6 +10,7 @@ part 'assets/constants.dart';
 part 'controllers/navigation.dart';
 part 'models/navigation.dart';
 part 'widgets/background.dart';
+part 'widgets/drawer.dart';
 part 'widgets/header.dart';
 
 class Env {
