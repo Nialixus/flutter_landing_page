@@ -22,7 +22,7 @@ class ChangeNotifierBuilder<T extends ChangeNotifier> extends StatelessWidget {
   /// Example:
   ///
   /// ```dart
-  /// ChangeNotifierBuilder<MyChangeNotifier>(
+  /// ChangeNotifierBuilder(
   ///   value: yourChangeNotifierInstance,
   ///   builder: (context, value, child) {
   ///     // Build your UI based on the value of MyChangeNotifier

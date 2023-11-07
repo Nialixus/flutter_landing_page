@@ -4,6 +4,9 @@ class Header extends SliverAppBar {
   const Header({super.key});
 
   @override
+  bool get automaticallyImplyLeading => false;
+
+  @override
   bool get pinned => true;
 
   @override
@@ -31,7 +34,7 @@ class Header extends SliverAppBar {
               child: Row(mainAxisSize: MainAxisSize.max, children: [
                 if (!context.isDesktop)
                   DButton(
-                      onTap: () {},
+                      onTap: () => Scaffold.of(context).openDrawer(),
                       padding: const EdgeInsets.all(Constants.padding * 0.75),
                       color: Colors.transparent,
                       child: Icon(Icons.menu, color: context.color.background)),

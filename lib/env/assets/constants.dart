@@ -4,6 +4,7 @@ class Constants {
   static const Curve curve = Curves.easeInOut;
   static const Duration duration = Duration(milliseconds: 300);
   static const double padding = 20.0;
+  static const double drawer = 250.0;
   static ThemeData lightTheme = ThemeData.light(useMaterial3: true).copyWith(
       dividerColor: Colors.transparent,
       textSelectionTheme: TextSelectionThemeData(
