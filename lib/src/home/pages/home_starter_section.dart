@@ -13,7 +13,7 @@ class HomeStarter extends StatelessWidget {
   Widget build(context) {
     return SizedBox(
       width: context.width,
-      height: context.height - kToolbarHeight,
+      height: (context.height - kToolbarHeight).min(380.0),
       child: DBuilder(
         data: {
           "starter": [

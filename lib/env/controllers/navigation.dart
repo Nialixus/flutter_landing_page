@@ -29,8 +29,6 @@ class NavigationController extends ValueNotifier<String> {
     );
   }
 
-  int get index => Env.navigations.indexWhere((e) => e.id == value).min(0);
-
   ScrollToId instance = ScrollToId(scrollController: ScrollController());
 
   void Function(AnimationController controller) animate(String id) {

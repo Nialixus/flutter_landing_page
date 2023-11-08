@@ -1,5 +1,6 @@
 part of '../home.dart';
 
+@model
 class HomeFeaturesModel extends DModel {
   const HomeFeaturesModel({
     required this.source,
@@ -7,5 +8,12 @@ class HomeFeaturesModel extends DModel {
     required this.subtitle,
   });
 
-  final String source, title, subtitle;
+  @variable
+  final String source;
+
+  @variable
+  final String title;
+
+  @variable
+  final String subtitle;
 }

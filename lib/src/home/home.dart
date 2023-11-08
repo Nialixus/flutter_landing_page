@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dart_fusion/dart_fusion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -13,3 +11,4 @@ part 'pages/home_features_section.dart';
 part 'pages/home_pricing_section.dart';
 part 'pages/home_starter_section.dart';
 part 'models/home_features_model.dart';
+part 'models/home_pricing_model.dart';
