@@ -9,6 +9,7 @@ part 'assets/routes.dart';
 part 'assets/constants.dart';
 part 'controllers/navigation.dart';
 part 'models/navigation.dart';
+part 'models/card.dart';
 part 'widgets/background.dart';
 part 'widgets/drawer.dart';
 part 'widgets/header.dart';
@@ -19,7 +20,7 @@ class Env {
     initialLocation: Routes.home.path,
   );
 
-  static List<NavigationModel> navigations = [
+  static const List<NavigationModel> navigations = [
     NavigationModel.starter,
     NavigationModel.features,
     NavigationModel.pricing,
@@ -27,6 +28,6 @@ class Env {
   ];
 
   static NavigationController controller = NavigationController(
-    NavigationModel.starter.id,
+    navigations.first.id,
   );
 }

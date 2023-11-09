@@ -1,7 +1,7 @@
 part of '../env.dart';
 
-class NavDrawer extends Drawer {
-  const NavDrawer.of(this.context, {super.key});
+class NavigationDrawer extends Drawer {
+  const NavigationDrawer.of(this.context, {super.key});
   final BuildContext context;
 
   @override
@@ -21,8 +21,8 @@ class NavDrawer extends Drawer {
       child: Column(children: [
         Padding(
           padding: const EdgeInsets.only(
-            top: Constants.padding,
-            bottom: Constants.padding * 3.0,
+            top: Constants.spacing,
+            bottom: Constants.spacing * 3.0,
           ),
           child: Text('🎉  FLUTTER',
               style: context.text.titleLarge?.copyWith(
@@ -41,10 +41,10 @@ class NavDrawer extends Drawer {
                         mainAxisSize: MainAxisSize.max,
                         color: context.color.background
                             .withOpacity(isSelected ? 0.25 : 0.0),
-                        padding: const EdgeInsets.all(Constants.padding),
+                        padding: const EdgeInsets.all(Constants.spacing),
                         margin: const EdgeInsets.only(
-                          left: Constants.padding * 0.5,
-                          bottom: Constants.padding * 0.5,
+                          left: Constants.spacing * 0.5,
+                          bottom: Constants.spacing * 0.5,
                         ),
                         style: context.text.bodyMedium?.copyWith(
                             color: context.color.background
@@ -53,19 +53,19 @@ class NavDrawer extends Drawer {
                                 ? FontWeight.w700
                                 : FontWeight.normal),
                         borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(Constants.padding * 0.25),
+                            topLeft: Radius.circular(Constants.spacing * 0.25),
                             bottomLeft:
-                                Radius.circular(Constants.padding * 0.25)),
+                                Radius.circular(Constants.spacing * 0.25)),
                         prefix: Padding(
                             padding: const EdgeInsets.only(
-                              right: Constants.padding * 0.5,
+                              right: Constants.spacing * 0.5,
                             ),
                             child: DImage(
                               source: isSelected
                                   ? item.activeIcon
                                   : item.inactiveIcon,
                               color: context.color.background,
-                              size: const Size.square(Constants.padding),
+                              size: const Size.square(Constants.spacing),
                             )),
                         onTap: () => Env.controller.onTap(context, id: item.id),
                       );

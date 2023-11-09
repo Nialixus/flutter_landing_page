@@ -8,7 +8,7 @@ class HomePricingModel extends DModel {
     required this.title,
     required this.price,
     required this.benefits,
-    required this.tyoe,
+    required this.type,
   });
 
   @variable
@@ -21,5 +21,5 @@ class HomePricingModel extends DModel {
   final String benefits;
 
   @Variable(defaultsTo: HomePricingType.month)
-  final HomePricingType tyoe;
+  final HomePricingType type;
 }

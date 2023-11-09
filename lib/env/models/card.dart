@@ -1,8 +1,8 @@
-part of '../home.dart';
+part of '../env.dart';
 
 @model
-class HomeFeaturesModel extends DModel {
-  const HomeFeaturesModel({
+class CardModel extends DModel {
+  const CardModel({
     required this.source,
     required this.title,
     required this.subtitle,

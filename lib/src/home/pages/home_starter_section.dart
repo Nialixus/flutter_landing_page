@@ -11,29 +11,26 @@ class HomeStarter extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return SizedBox(
+    return Container(
       width: context.width,
-      height: (context.height - kToolbarHeight).min(380.0),
+      height: context.height - kToolbarHeight,
+      constraints: const BoxConstraints(minHeight: 400.0),
       child: DBuilder(
         data: {
-          "starter": [
-            IntrinsicWidth(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                  Text(title,
-                      style: context.text.titleLarge
-                          ?.copyWith(fontWeight: FontWeight.w900, height: 1.1),
-                      textAlign: TextAlign.left),
-                  Text('\n$subtitle',
-                      style: context.text.bodySmall,
-                      textAlign: TextAlign.justify)
-                ])),
+          "label": [
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(title,
+                  style: context.text.titleLarge
+                      ?.copyWith(fontWeight: FontWeight.w900, height: 1.1),
+                  textAlign: TextAlign.left),
+              Text('\n$subtitle',
+                  style: context.text.bodySmall, textAlign: TextAlign.justify)
+            ]),
             Padding(
-                padding: const EdgeInsets.all(Constants.padding),
+                padding: const EdgeInsets.all(Constants.spacing),
                 child: Wrap(
-                    runSpacing: Constants.padding * 0.5,
-                    spacing: Constants.padding * 0.5,
+                    runSpacing: Constants.spacing * 0.5,
+                    spacing: Constants.spacing * 0.5,
                     runAlignment: WrapAlignment.center,
                     alignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
@@ -44,13 +41,13 @@ class HomeStarter extends StatelessWidget {
                           textAlign: TextAlign.start,
                           cursorColor: context.color.background,
                           borderRadius:
-                              BorderRadius.circular(Constants.padding * 0.5),
+                              BorderRadius.circular(Constants.spacing * 0.5),
                           borderSideIdle: BorderSide.none,
                           backgroundColor:
                               context.color.onBackground.withOpacity(0.5),
                           hintText: 'Enter Your Email Adress              ',
                           contentPadding: const EdgeInsets.symmetric(
-                              horizontal: Constants.padding),
+                              horizontal: Constants.spacing),
                           textStyle: context.text.bodySmall?.copyWith(
                               fontWeight: FontWeight.w500,
                               color: context.color.surface),
@@ -63,8 +60,8 @@ class HomeStarter extends StatelessWidget {
                           placeholder: DButton.text(
                               text: 'Enter Your Email Adress              ',
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: Constants.padding,
-                                  vertical: Constants.padding * 0.75),
+                                  horizontal: Constants.spacing,
+                                  vertical: Constants.spacing * 0.75),
                               style: context.text.bodySmall
                                   ?.copyWith(fontWeight: FontWeight.w500),
                               onTap: () {})),
@@ -72,17 +69,17 @@ class HomeStarter extends StatelessWidget {
                           onTap: () {},
                           text: 'Join Waitlist',
                           padding: const EdgeInsets.symmetric(
-                              horizontal: Constants.padding,
-                              vertical: Constants.padding * 0.7),
+                              horizontal: Constants.spacing,
+                              vertical: Constants.spacing * 0.7),
                           style: context.text.bodySmall?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: context.color.primary,
                           ),
                           borderRadius:
-                              BorderRadius.circular(Constants.padding * 0.5))
+                              BorderRadius.circular(Constants.spacing * 0.5))
                     ]))
           ],
-          "illustration": Animate(
+          "thumbnail": Animate(
               effects: const [
                 SlideEffect(
                     begin: Offset(0.0, -0.25),
@@ -103,7 +100,7 @@ class HomeStarter extends StatelessWidget {
         builder: (context, data) {
           if (context.isDesktop) {
             return Padding(
-              padding: const EdgeInsets.all(Constants.padding),
+              padding: const EdgeInsets.all(Constants.spacing),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -125,10 +122,10 @@ class HomeStarter extends StatelessWidget {
                     child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: data.of('starter')),
+                        children: data.of('label')),
                   )),
-                  const SizedBox(width: Constants.padding),
-                  Expanded(child: data.of('illustration')),
+                  const SizedBox(width: Constants.spacing),
+                  Expanded(child: data.of('thumbnail')),
                 ],
               ),
             );
@@ -136,7 +133,7 @@ class HomeStarter extends StatelessWidget {
             return Stack(
               alignment: Alignment.topCenter,
               children: [
-                data.of('illustration'),
+                data.of('thumbnail'),
                 Container(
                   alignment: Alignment.bottomCenter,
                   decoration: BoxDecoration(
@@ -150,7 +147,7 @@ class HomeStarter extends StatelessWidget {
                       ],
                     ),
                   ),
-                  padding: const EdgeInsets.all(Constants.padding),
+                  padding: const EdgeInsets.all(Constants.spacing),
                   child: Animate(
                     effects: const [
                       SlideEffect(
@@ -167,7 +164,7 @@ class HomeStarter extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: data.of('starter'),
+                      children: data.of('label'),
                     ),
                   ),
                 ),

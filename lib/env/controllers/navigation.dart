@@ -8,6 +8,8 @@ class NavigationController extends ValueNotifier<String> {
     });
   }
 
+  ScrollToId instance = ScrollToId(scrollController: ScrollController());
+
   void onTap(
     BuildContext context, {
     required String id,
@@ -28,8 +30,6 @@ class NavigationController extends ValueNotifier<String> {
       curve: Constants.curve,
     );
   }
-
-  ScrollToId instance = ScrollToId(scrollController: ScrollController());
 
   void Function(AnimationController controller) animate(String id) {
     return (controller) {
@@ -65,5 +65,11 @@ class NavigationController extends ValueNotifier<String> {
         }
       });
     };
+  }
+
+  @override
+  void dispose() {
+    instance.scrollController?.dispose();
+    super.dispose();
   }
 }
