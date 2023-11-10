@@ -1,67 +1,102 @@
-// part of '../app.dart';
+part of '../env.dart';
 
-// class AppFooter extends StatelessWidget {
-//   const AppFooter({super.key});
+class NavigationFooter extends StatelessWidget {
+  const NavigationFooter({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBackground(
-//         backgroundColor: context.color.onBackground,
-//         imageColor: context.color.background.withOpacity(0.1),
-//         child: Theme(
-//           data: context.theme.copyWith(
-//             textSelectionTheme: TextSelectionThemeData(
-//               selectionColor: context.color.background.withOpacity(0.15),
-//             ),
-//           ),
-//           child: Padding(
-//               padding: const EdgeInsets.all(Constant.padding),
-//               child: Row(children: [
-//                 Expanded(
-//                     child: Wrap(
-//                         crossAxisAlignment: WrapCrossAlignment.center,
-//                         alignment: WrapAlignment.spaceAround,
-//                         children: [
-//                       const AppLogo(),
-//                       Padding(
-//                           padding: const EdgeInsets.all(Constant.padding),
-//                           child:
-//                               Wrap(alignment: WrapAlignment.center, children: [
-//                             for (int x = 0; x < 5; x++)
-//                               DButton.text(
-//                                   style: context.text.bodyMedium
-//                                       ?.copyWith(color: context.color.primary),
-//                                   onTap: () {
-//                                     if (x <= 2) {
-//                                       App.controller.onTap(context,
-//                                           pageID: Routes.home.path,
-//                                           sectionID:
-//                                               AppPageModel.home.sections[x].id);
-//                                     } else if (x == 3) {
-//                                       launchUrl(Uri.parse(Environment.baseUrl
-//                                           .replaceAll('/api',
-//                                               '/public/term_of_use.txt')));
-//                                     } else if (x == 4) {
-//                                       launchUrl(Uri.parse(
-//                                           "mailto://inidia.app@gmail.com"));
-//                                     }
-//                                   },
-//                                   text: App.format(
-//                                       name: [
-//                                     Label.footer.starter,
-//                                     Label.footer.benefit,
-//                                     Label.footer.pricing,
-//                                     Label.footer.term,
-//                                     Label.footer.contact
-//                                   ][x]),
-//                                   color: Colors.transparent)
-//                           ])),
-//                       Text(
-//                           "© ${DateTime.now().year == 2023 ? "2023" : "2023 - ${DateTime.now().year}"} Inidia.app",
-//                           style: context.text.bodyMedium
-//                               ?.copyWith(color: context.color.background))
-//                     ]))
-//               ])),
-//         ));
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: context.theme.copyWith(
+        textSelectionTheme: TextSelectionThemeData(
+          selectionColor: context.color.background.withOpacity(0.15),
+        ),
+      ),
+      child: Container(
+        color: context.color.onBackground,
+        padding: const EdgeInsets.all(Constants.spacing),
+        constraints: BoxConstraints(minWidth: context.width),
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          alignment: WrapAlignment.spaceAround,
+          children: [
+            // Navigation Logo
+            NavigationHeader.logo(),
+
+            // Menu list
+            Padding(
+              padding: const EdgeInsets.all(Constants.spacing),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  // Term of Service Button
+                  DButton.text(
+                    onTap: () => context.go('/term_of_service.txt'),
+                    text: 'Term of Service',
+                    style: context.text.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: context.color.primary,
+                    ),
+                    color: Colors.transparent,
+                  ),
+
+                  // Privacy Pplicy Button
+                  DButton.text(
+                    onTap: () => launchUrl(
+                        Uri.parse('https://www.buymeacoffee.com/nialixus')),
+                    text: 'Privacy Policy',
+                    style: context.text.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: context.color.primary,
+                    ),
+                    color: Colors.transparent,
+                  ),
+
+                  // Contact Us Button
+                  DButton.text(
+                    onTap: () =>
+                        launchUrl(Uri.parse('mailto://nialixus@gmail.com')),
+                    text: 'Contact Us',
+                    style: context.text.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: context.color.primary,
+                    ),
+                    color: Colors.transparent,
+                  ),
+
+                  // Blog Button
+                  DButton.text(
+                    onTap: () => launchUrl(Uri.parse(
+                        'https://github.com/Nialixus/flutter_landing_page')),
+                    text: 'Blog',
+                    style: context.text.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: context.color.primary,
+                    ),
+                    color: Colors.transparent,
+                  ),
+                ],
+              ),
+            ),
+
+            // Copyright text
+            DButton.text(
+              mainAxisSize: MainAxisSize.min,
+              text: "© 2023 Louis Wiwawan.",
+              style: context.text.bodyMedium?.copyWith(
+                color: context.color.background.withOpacity(0.25),
+                fontWeight: FontWeight.w400,
+                fontSize: 11.0,
+              ),
+              textAlign: TextAlign.center,
+              color: Colors.transparent,
+              onTap: () => launchUrl(
+                Uri.parse('https://creativecommons.org/'
+                    'licenses/by-nc-sa/4.0/'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

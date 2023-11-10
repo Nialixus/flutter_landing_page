@@ -18,7 +18,7 @@ class HomeFeatures extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           // Display label
-          HomeFeatures.label(id: id, title: title, subtitle: subtitle),
+          HomeFeatures.introduction(id: id, title: title, subtitle: subtitle),
 
           // Display card
           Container(
@@ -72,7 +72,7 @@ class HomeFeatures extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Display label
-            HomeFeatures.label(id: id, title: title, subtitle: subtitle),
+            HomeFeatures.introduction(id: id, title: title, subtitle: subtitle),
 
             // Display swiper
             Expanded(
@@ -121,7 +121,7 @@ class HomeFeatures extends StatelessWidget {
     }
   }
 
-  static Widget label({
+  static Widget introduction({
     required String id,
     required String title,
     required String subtitle,

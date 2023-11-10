@@ -54,20 +54,26 @@ class Background extends StatelessWidget {
   }
 
   static Background parallax({
-    String source = 'assets/image/background.png',
     required Widget child,
   }) {
     return Background.builder(
         (_, __) => ChangeNotifierBuilder(
-            value: Env.controller.instance.scrollController!,
+            value: Env.controller.instance.scrollController,
             builder: (context, value, child) {
-              double position = value.hasClients
-                  ? value.offset / value.position.maxScrollExtent * 2.0
-                  : 0.0;
+              double position = 0.0;
+
+              if (value != null && value.hasClients) {
+                double maxScrollExtent = value.position.maxScrollExtent;
+                double offset = value.offset;
+
+                if (maxScrollExtent > 0) {
+                  position = offset / maxScrollExtent * 2.0;
+                }
+              }
               return RepaintBoundary(
                 child: DImage(
                     alignment: Alignment(0.0, -1.0 + position),
-                    source: source,
+                    source: 'assets/image/background.png',
                     fit: BoxFit.fitWidth,
                     colorBlendMode: BlendMode.hardLight,
                     color: context.color.primary),

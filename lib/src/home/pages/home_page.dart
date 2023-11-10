@@ -10,18 +10,54 @@ class HomePage extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           drawer: NavigationDrawer.of(context),
-          body: NestedScrollView(
-            headerSliverBuilder: (_, __) => const [NavigationHeader()],
-
-            // Scroll to the specified ID
-            body: InteractiveScrollViewer(
-              scrollToId: Env.controller.instance,
-              scrollDirection: Axis.vertical,
-              children: Env.navigations.to(HomePage.scrollContent),
-            ),
+          body: CustomScrollView(
+            slivers: [
+              const NavigationHeader(),
+              SliverFillRemaining(
+                hasScrollBody: true,
+                child: InteractiveScrollViewer(
+                  scrollToId: Env.controller.instance,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    ...Env.navigations.to(HomePage.scrollContent),
+                    ScrollContent(id: 'footer', child: const NavigationFooter())
+                  ],
+                ),
+              ),
+            ],
           ),
+          floatingActionButton: HomePage.floatingButton(),
         ),
       ),
+    );
+  }
+
+  static Widget floatingButton() {
+    return ValueListenableBuilder(
+      valueListenable: Env.controller,
+      builder: (_, value, child) {
+        return TweenAnimationBuilder(
+          tween: Tween(end: value == Env.navigations.last.id ? 0.0 : 1.0),
+          duration: Constants.duration,
+          builder: (_, value, child) {
+            return Transform.translate(
+              offset: Offset(0.0, value * kToolbarHeight * 2.0),
+              child: child,
+            );
+          },
+          child: child,
+        );
+      },
+      child: Builder(builder: (context) {
+        return FloatingActionButton(
+          shape: const CircleBorder(),
+          onPressed: () => Env.controller.onTap(
+            context,
+            id: Env.navigations.first.id,
+          ),
+          child: const Icon(Icons.arrow_upward_rounded),
+        );
+      }),
     );
   }
 

@@ -10,25 +10,33 @@ class NavigationController extends ValueNotifier<String> {
 
   ScrollToId instance = ScrollToId(scrollController: ScrollController());
 
-  void onTap(
-    BuildContext context, {
-    required String id,
-  }) {
-    // [1] Get Scaffold
+  void onTap(BuildContext context, {required String id}) {
+    // [1] Get the Scaffold instance
     final scaffold = Scaffold.of(context);
 
-    // [2] Close Drawer
+    // [2] Close the Drawer if open
     if (scaffold.hasDrawer && scaffold.isDrawerOpen) scaffold.closeDrawer();
 
-    // [3[] Navigate to The Section of ID
-    context.go('/?section=$id');
+    // [3] Check if current route is home or not
+    if (ModalRoute.of(context)?.settings.name == '/') {
+      // [4] Navigate to the section with the specified ID
+      context.go('/?section=$id');
+    } else {
+      // [5] Replace the current route with the specified section ID
+      context.go('/?section=$id');
+    }
 
-    // [4] Animate Scroll to The Section of ID
-    instance.animateTo(
-      id,
-      duration: Constants.duration,
-      curve: Constants.curve,
-    );
+    // [7] Scroll to the specified section ID
+    if (instance.scrollController?.hasClients == true &&
+        instance.scrollController?.position.hasPixels == true) {
+      WidgetsBinding.instance.addPostFrameCallback((x) {
+        Future.delayed(x).then((_) => instance.animateTo(
+              id,
+              duration: Constants.duration,
+              curve: Constants.curve,
+            ));
+      });
+    }
   }
 
   void Function(AnimationController controller) animate(String id) {

@@ -15,13 +15,15 @@ class HomePricing extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueProvider(
       value: id,
-
-      // Even though it seems unnecessary but this conditional is used for restarting the animation
-      child: !context.isDesktop
-          ? Column(
+      child: Builder(
+        // Even though it seems unnecessary but this conditional is used for restarting the animation
+        builder: (context) {
+          if (!context.isDesktop) {
+            return Column(
               children: [
                 // Display label
-                HomePricing.label(id: id, title: title, subtitle: subtitle),
+                HomePricing.introduction(
+                    id: id, title: title, subtitle: subtitle),
 
                 // Display cards
                 Container(
@@ -37,12 +39,13 @@ class HomePricing extends StatelessWidget {
                   ),
                 ),
               ],
-            )
-          : Column(
+            );
+          } else {
+            return Column(
               children: [
                 // Display label with different tree
                 Center(
-                    child: HomePricing.label(
+                    child: HomePricing.introduction(
                         id: id, title: title, subtitle: subtitle)),
 
                 // Display card with different tree
@@ -55,16 +58,21 @@ class HomePricing extends StatelessWidget {
                       padding: const EdgeInsets.all(Constants.spacing),
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
-                      child: Row(children: plans.to(HomePricing.card)),
+                      child: Row(
+                        children: plans.to(HomePricing.card),
+                      ),
                     ),
                   ),
                 ),
               ],
-            ),
+            );
+          }
+        },
+      ),
     );
   }
 
-  static Widget label({
+  static Widget introduction({
     required String id,
     required String title,
     required String subtitle,
