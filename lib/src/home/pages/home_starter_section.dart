@@ -13,7 +13,7 @@ class HomeStarter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: context.width,
-      height: context.height,
+      height: context.height - kToolbarHeight,
       constraints: const BoxConstraints(minHeight: 600.0),
       child: Builder(
         builder: (context) {

@@ -1,16 +1,16 @@
 part of '../env.dart';
 
-class NavigationHeader extends SliverAppBar {
-  const NavigationHeader({
+class NavigationHeader extends AppBar {
+  NavigationHeader({
     super.key,
     super.backgroundColor = Colors.transparent,
+    this.selectionColor,
   });
+
+  final Color? selectionColor;
 
   @override
   bool get automaticallyImplyLeading => false;
-
-  @override
-  bool get pinned => true;
 
   @override
   Widget? get flexibleSpace => Hero(
@@ -20,17 +20,22 @@ class NavigationHeader extends SliverAppBar {
             value: Env.controller.instance.scrollController,
             builder: (context, value, child) {
               // Calculate the scroll progress
-              double progress =
-                  (value?.offset ?? 0.0).max(kToolbarHeight) / kToolbarHeight;
+              double position() {
+                if (value != null && value.hasClients) return value.offset;
+                return 0.0;
+              }
+
+              double progress = position().max(kToolbarHeight) / kToolbarHeight;
 
               return Theme(
                 data: context.theme.copyWith(
                   textSelectionTheme: context.theme.textSelectionTheme.copyWith(
-                    selectionColor: Color.lerp(
-                      context.color.onBackground,
-                      context.color.background,
-                      progress,
-                    )?.withOpacity(0.25),
+                    selectionColor: selectionColor ??
+                        Color.lerp(
+                          context.color.onBackground,
+                          context.color.background,
+                          progress,
+                        )?.withOpacity(0.25),
                   ),
                 ),
                 child: Container(

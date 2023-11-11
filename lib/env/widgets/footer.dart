@@ -81,7 +81,7 @@ class NavigationFooter extends StatelessWidget {
             // Copyright text
             DButton.text(
               mainAxisSize: MainAxisSize.min,
-              text: "© 2023 Louis Wiwawan.",
+              text: "© 2023 Louis Wiwawan",
               style: context.text.bodyMedium?.copyWith(
                 color: context.color.background.withOpacity(0.25),
                 fontWeight: FontWeight.w400,
@@ -90,8 +90,10 @@ class NavigationFooter extends StatelessWidget {
               textAlign: TextAlign.center,
               color: Colors.transparent,
               onTap: () => launchUrl(
-                Uri.parse('https://creativecommons.org/'
-                    'licenses/by-nc-sa/4.0/'),
+                Uri.parse(
+                  'https://github.com/Nialixus/'
+                  'flutter_landing_page/blob/main/LICENSE',
+                ),
               ),
             ),
           ],

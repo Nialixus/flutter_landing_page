@@ -10,32 +10,32 @@ class NavigationController extends ValueNotifier<String> {
 
   ScrollToId instance = ScrollToId(scrollController: ScrollController());
 
-  void onTap(BuildContext context, {required String id}) {
+  Future<void> onTap(BuildContext context, {required String id}) async {
     // [1] Get the Scaffold instance
     final scaffold = Scaffold.of(context);
 
-    // [2] Close the Drawer if open
+    // [2] Close the Drawer if it was open
     if (scaffold.hasDrawer && scaffold.isDrawerOpen) scaffold.closeDrawer();
 
-    // [3] Check if current route is home or not
-    if (ModalRoute.of(context)?.settings.name == '/') {
-      // [4] Navigate to the section with the specified ID
-      context.go('/?section=$id');
-    } else {
-      // [5] Replace the current route with the specified section ID
-      context.go('/?section=$id');
+    // [3] Check wether current route is home or not
+    final isHome = ModalRoute.of(context)?.settings.name == '/';
+
+    // [4] Navigate to the section with the specified ID
+    context.go('/?section=$id');
+
+    // [5] Make a delay before calling animation
+    if (!isHome) {
+      instance.scrollContentsList.clear();
+      await Future.delayed(Constants.duration);
     }
 
-    // [7] Scroll to the specified section ID
-    if (instance.scrollController?.hasClients == true &&
-        instance.scrollController?.position.hasPixels == true) {
-      WidgetsBinding.instance.addPostFrameCallback((x) {
-        Future.delayed(x).then((_) => instance.animateTo(
-              id,
-              duration: Constants.duration,
-              curve: Constants.curve,
-            ));
-      });
+    // [6] Scroll to the specified section ID
+    if (instance.scrollController?.hasClients == true) {
+      instance.animateTo(
+        id,
+        duration: Constants.duration,
+        curve: Constants.curve,
+      );
     }
   }
 

@@ -9,21 +9,17 @@ class HomePage extends StatelessWidget {
       child: Background.parallax(
         child: Scaffold(
           backgroundColor: Colors.transparent,
+          appBar: NavigationHeader(),
           drawer: NavigationDrawer.of(context),
-          body: CustomScrollView(
-            slivers: [
-              const NavigationHeader(),
-              SliverFillRemaining(
-                hasScrollBody: true,
-                child: InteractiveScrollViewer(
-                  scrollToId: Env.controller.instance,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    ...Env.navigations.to(HomePage.scrollContent),
-                    ScrollContent(id: 'footer', child: const NavigationFooter())
-                  ],
-                ),
-              ),
+          body: InteractiveScrollViewer(
+            scrollToId: Env.controller.instance,
+            scrollDirection: Axis.vertical,
+            children: [
+              ...Env.navigations.to(HomePage.scrollContent),
+              ScrollContent(
+                id: 'footer',
+                child: const NavigationFooter(),
+              )
             ],
           ),
           floatingActionButton: HomePage.floatingButton(),
