@@ -44,10 +44,10 @@ app.*.map.json
 /android/app/release
 
 # Custom ignore
-/android
-/ios
-/linux
-/maxos
-/web
-/windows
+/android/
+/ios/
+/linux/
+/macos/
+/web/
+/windows/
 /lib/firebase_options.dart
