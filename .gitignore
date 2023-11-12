@@ -42,3 +42,12 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Custom ignore
+/android
+/ios
+/linux
+/maxos
+/web
+/windows
+/lib/firebase_options.dart
