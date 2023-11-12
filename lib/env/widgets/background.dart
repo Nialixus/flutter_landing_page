@@ -57,28 +57,29 @@ class Background extends StatelessWidget {
     required Widget child,
   }) {
     return Background.builder(
-        (_, __) => ChangeNotifierBuilder(
-            value: Env.controller.instance.scrollController,
-            builder: (context, value, child) {
-              double position = 0.0;
+        (_, __) => DChangeBuilder(
+              value: Env.controller.instance.scrollController!,
+              builder: (context, value, child) {
+                double position = 0.0;
 
-              if (value != null && value.hasClients) {
-                double maxScrollExtent = value.position.maxScrollExtent;
-                double offset = value.offset;
+                if (value.hasClients) {
+                  double maxScrollExtent = value.position.maxScrollExtent;
+                  double offset = value.offset;
 
-                if (maxScrollExtent > 0) {
-                  position = offset / maxScrollExtent * 2.0;
+                  if (maxScrollExtent > 0) {
+                    position = offset / maxScrollExtent * 2.0;
+                  }
                 }
-              }
-              return RepaintBoundary(
-                child: DImage(
-                    alignment: Alignment(0.0, -1.0 + position),
-                    source: 'assets/image/background.png',
-                    fit: BoxFit.fitWidth,
-                    colorBlendMode: BlendMode.hardLight,
-                    color: context.color.primary),
-              );
-            }),
+                return RepaintBoundary(
+                  child: DImage(
+                      alignment: Alignment(0.0, -1.0 + position),
+                      source: 'assets/image/background.png',
+                      fit: BoxFit.fitWidth,
+                      colorBlendMode: BlendMode.hardLight,
+                      color: context.color.primary),
+                );
+              },
+            ),
         child: child);
   }
 }

@@ -18,7 +18,7 @@ class HomeFAQ extends StatelessWidget {
       constraints: BoxConstraints(
         minHeight: context.height - kToolbarHeight,
       ),
-      child: ValueProvider(
+      child: DProvider(
         value: id,
 
         // Even though it seems unnecessary but this conditional is used for restarting the animation
@@ -132,7 +132,7 @@ class HomeFAQ extends StatelessWidget {
 
         return Animate(
           autoPlay: false,
-          onInit: Env.controller.animate(ValueProvider.of(context)),
+          onInit: Env.controller.animate(DProvider.of(context)),
           effects: [
             SlideEffect(
               begin: const Offset(0.0, -0.25),
@@ -154,7 +154,7 @@ class HomeFAQ extends StatelessWidget {
               color: context.color.background,
               borderRadius: BorderRadius.circular(Constants.spacing * 0.25),
             ),
-            child: ExpansionTileWrapper(
+            child: DTileWrapper(
               (isExpanded) => ExpansionTile(
                 initiallyExpanded: true,
                 trailing: Icon(isExpanded ? Icons.remove : Icons.add),

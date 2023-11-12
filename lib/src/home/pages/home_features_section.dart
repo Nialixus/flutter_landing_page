@@ -22,7 +22,7 @@ class HomeFeatures extends StatelessWidget {
 
           // Display card
           Container(
-            padding: const EdgeInsets.all(Constants.spacing),
+            padding: const EdgeInsets.all(Constants.spacing).copyWith(top: 0.0),
             alignment: Alignment.center,
             child: Wrap(
               direction: Axis.horizontal,

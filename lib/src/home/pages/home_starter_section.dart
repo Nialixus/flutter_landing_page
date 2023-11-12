@@ -13,7 +13,7 @@ class HomeStarter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: context.width,
-      height: context.height - kToolbarHeight,
+      height: context.height - (context.isDesktop ? 0.0 : kToolbarHeight),
       constraints: const BoxConstraints(minHeight: 600.0),
       child: Builder(
         builder: (context) {
@@ -170,7 +170,8 @@ class HomeStarter extends StatelessWidget {
                 color: context.color.background.withOpacity(0.75),
               ),
               placeholder: DButton.text(
-                text: 'Enter Your Email Adress              ',
+                text:
+                    'Enter Your Email Adress                        | Join Waitlist',
                 padding: const EdgeInsets.symmetric(
                   horizontal: Constants.spacing,
                   vertical: Constants.spacing * 0.75,
@@ -179,21 +180,21 @@ class HomeStarter extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.w500),
                 onTap: () {},
               ),
-            ),
-
-            // Display "Join Waitlist" button
-            DButton.text(
-              onTap: () {},
-              text: 'Join Waitlist',
-              padding: const EdgeInsets.symmetric(
-                horizontal: Constants.spacing,
-                vertical: Constants.spacing * 0.7,
+              suffixIcon: // Display "Join Waitlist" button
+                  DButton.text(
+                onTap: () {},
+                text: 'Join Waitlist',
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Constants.spacing,
+                  vertical: Constants.spacing * 0.7,
+                ),
+                style: context.text.bodyMedium?.copyWith(
+                  color: context.color.primary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12.0,
+                ),
+                borderRadius: BorderRadius.circular(Constants.spacing * 0.25),
               ),
-              style: context.text.bodySmall?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: context.color.primary,
-              ),
-              borderRadius: BorderRadius.circular(Constants.spacing * 0.5),
             ),
           ],
         ),

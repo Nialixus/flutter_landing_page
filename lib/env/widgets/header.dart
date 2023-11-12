@@ -16,12 +16,12 @@ class NavigationHeader extends AppBar {
   Widget? get flexibleSpace => Hero(
         tag: '#Header',
         child: Builder(builder: (context) {
-          return ChangeNotifierBuilder(
-            value: Env.controller.instance.scrollController,
+          return DChangeBuilder(
+            value: Env.controller.instance.scrollController!,
             builder: (context, value, child) {
               // Calculate the scroll progress
               double position() {
-                if (value != null && value.hasClients) return value.offset;
+                if (value.hasClients) return value.offset;
                 return 0.0;
               }
 

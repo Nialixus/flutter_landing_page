@@ -13,7 +13,7 @@ class HomePricing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueProvider(
+    return DProvider(
       value: id,
       child: Builder(
         // Even though it seems unnecessary but this conditional is used for restarting the animation
@@ -131,7 +131,7 @@ class HomePricing extends StatelessWidget {
       builder: (context) {
         return Animate(
           autoPlay: false,
-          onInit: Env.controller.animate(ValueProvider.of(context)),
+          onInit: Env.controller.animate(DProvider.of(context)),
           effects: [
             // Slide in animation effect
             SlideEffect(
