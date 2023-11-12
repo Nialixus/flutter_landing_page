@@ -1,4 +1,4 @@
-# Custom ignore
+# 
 /android/
 /ios/
 /linux/
@@ -6,6 +6,10 @@
 /web/
 /windows/
 /lib/firebase_options.dart
+.github/
+.firebaserc
+firebase.json
+.firebase
 
 # Miscellaneous
 *.class

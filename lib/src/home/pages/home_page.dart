@@ -11,16 +11,23 @@ class HomePage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           appBar: NavigationHeader(),
           drawer: NavigationDrawer.of(context),
-          body: InteractiveScrollViewer(
-            scrollToId: Env.controller.instance,
-            scrollDirection: Axis.vertical,
-            children: [
-              ...Env.navigations.to(HomePage.scrollContent),
-              ScrollContent(
-                id: 'footer',
-                child: const NavigationFooter(),
-              )
-            ],
+          body: RefreshIndicator(
+            color: context.color.background,
+            onRefresh: () => Env.controller.onTap(
+              context,
+              id: Env.navigations.first.id,
+            ),
+            child: InteractiveScrollViewer(
+              scrollToId: Env.controller.instance,
+              scrollDirection: Axis.vertical,
+              children: [
+                ...Env.navigations.to(HomePage.scrollContent),
+                ScrollContent(
+                  id: 'footer',
+                  child: const NavigationFooter(),
+                )
+              ],
+            ),
           ),
           floatingActionButton: HomePage.floatingButton(),
         ),
