@@ -9,7 +9,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
 
-  // Remove this if you're not setting up firebase ⬇⬇⬇
+  // --------- Remove the line below if you're not setting up firebase ------- //
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(
