@@ -3,14 +3,34 @@ A responsive landing page template for flutter. Perfect for showcasing your prod
 
 ## 🏆 Table of Contents
 
-- Installation
-- Demo
+- [Get Started](#get-started)
+- [Demo](#demo)
   - [Lead In](#lead-in)
   - [Key Features](#key-features)
   - [Pricing](#pricing)
   - [FAQ](#faq)
 
+## 🔥 Get Started
 
+To set up the Flutter Landing Page project, follow these steps
+
+```bash
+# Clone the Flutter Landing Page repository
+gh repo clone Nialixus/flutter_landing_page
+
+# Navigate into the project directory
+cd flutter_landing_page
+
+# Run Flutter create to initialize the project
+flutter create .
+
+# Install dependencies
+flutter pub get
+
+# Start the development server
+flutter run -d web-server
+
+```
 
 ## 🎉 Demo
 You can see this demo in https://nialixus-landing-page.web.app
