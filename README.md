@@ -3,12 +3,12 @@ A responsive landing page template for flutter. Perfect for showcasing your prod
 
 ## 🏆 Table of Contents
 
-- [Get Started](#get-started)
-- [Demo](#demo)
-  - [Lead In](#lead-in)
-  - [Key Features](#key-features)
-  - [Pricing](#pricing)
-  - [FAQ](#faq)
+- [Get Started](#🔥-get-started)
+- [Demo](#🎉-demo)
+  - [Lead In](#⭐️-lead-in)
+  - [Key Features](#🥇-key-features)
+  - [Pricing](#💰-pricing)
+  - [FAQ](#📣-faq)
 
 ## 🔥 Get Started
 
