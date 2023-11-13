@@ -6,7 +6,7 @@
 /web/
 /windows/
 /lib/firebase_options.dart
-.github/
+.github/workflows/
 .firebaserc
 firebase.json
 .firebase
