@@ -15,11 +15,14 @@ A responsive landing page template for flutter. Perfect for showcasing your prod
 To set up the Flutter Landing Page project, follow these steps
 
 ```bash
-# Clone the Flutter Landing Page repository
-gh repo clone Nialixus/flutter_landing_page
+# Fork the Flutter Landing Page repository to your account and rename it as my-landing-page
+gh repo fork Nialixus/flutter_landing_page --fork-name my-landing-page
+
+# Clone the forked repository to your local machine
+gh repo clone my-landing-page
 
 # Navigate into the project directory
-cd flutter_landing_page
+cd my-landing-page
 
 # Run Flutter create to initialize the project
 flutter create .
