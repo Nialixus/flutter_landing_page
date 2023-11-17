@@ -146,25 +146,29 @@ class HomeFeatures extends StatelessWidget {
                 duration: Duration(milliseconds: 750),
               ),
             ],
-            child: Column(
-              children: [
-                // Display title
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: context.text.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w900,
-                    height: 1.1,
+            child: MergeSemantics(
+              child: Column(
+                children: [
+                  // Display title
+                  Text(
+                    title,
+                    semanticsLabel: title,
+                    textAlign: TextAlign.center,
+                    style: context.text.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      height: 1.1,
+                    ),
                   ),
-                ),
 
-                // Ddisplay subtitle
-                Text(
-                  '\n$subtitle',
-                  style: context.text.bodySmall,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                  // Ddisplay subtitle
+                  Text(
+                    '\n$subtitle',
+                    semanticsLabel: subtitle,
+                    style: context.text.bodySmall,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -189,40 +193,48 @@ class HomeFeatures extends StatelessWidget {
               ),
             ],
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Display item image
-              DImage(
-                source: item.source,
-                size: const Size.square(Constants.spacing * 1.5),
-                color: context.color.primary,
-              ),
-
-              // Add spacing between image and title
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: Constants.spacing * 0.5,
-                  bottom: Constants.spacing,
-                ),
-                child: Text(
-                  item.title,
-                  style: context.text.bodyMedium?.copyWith(
+          child: MergeSemantics(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Display item image
+                Semantics(
+                  image: true,
+                  label: '${item.title} Icon',
+                  child: DImage(
+                    source: item.source,
+                    size: const Size.square(Constants.spacing * 1.5),
                     color: context.color.primary,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
 
-              // Display item subtitle
-              Text(
-                item.subtitle,
-                textAlign: TextAlign.justify,
-                style: context.text.bodySmall
-                    ?.copyWith(color: Colors.grey.shade700),
-              ),
-            ],
+                // Add spacing between image and title
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: Constants.spacing * 0.5,
+                    bottom: Constants.spacing,
+                  ),
+                  child: Text(
+                    item.title,
+                    semanticsLabel: item.title,
+                    style: context.text.bodyMedium?.copyWith(
+                      color: context.color.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+
+                // Display item subtitle
+                Text(
+                  item.subtitle,
+                  semanticsLabel: item.subtitle,
+                  textAlign: TextAlign.justify,
+                  style: context.text.bodySmall
+                      ?.copyWith(color: Colors.grey.shade700),
+                ),
+              ],
+            ),
           ),
         );
       },

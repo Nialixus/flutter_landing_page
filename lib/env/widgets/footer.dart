@@ -29,70 +29,89 @@ class NavigationFooter extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 children: [
                   // Term of Service Button
-                  DButton.text(
-                    onTap: () => context.go('/term_of_service.txt'),
-                    text: 'Term of Service',
-                    style: context.text.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: context.color.primary,
+                  Semantics(
+                    label: 'Unidentified Route',
+                    link: true,
+                    child: DButton.text(
+                      onTap: () => context.go('/term_of_service.txt'),
+                      text: 'Term of Service',
+                      style: context.text.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: context.color.primary,
+                      ),
+                      color: Colors.transparent,
                     ),
-                    color: Colors.transparent,
                   ),
 
                   // Privacy Pplicy Button
-                  DButton.text(
-                    onTap: () => launchUrl(
-                        Uri.parse('https://www.buymeacoffee.com/nialixus')),
-                    text: 'Privacy Policy',
-                    style: context.text.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: context.color.primary,
+                  Semantics(
+                    label: 'Sponsor Us',
+                    link: true,
+                    child: DButton.text(
+                      onTap: () => launchUrl(
+                          Uri.parse('https://www.buymeacoffee.com/nialixus')),
+                      text: 'Privacy Policy',
+                      style: context.text.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: context.color.primary,
+                      ),
+                      color: Colors.transparent,
                     ),
-                    color: Colors.transparent,
                   ),
 
                   // Contact Us Button
-                  DButton.text(
-                    onTap: () =>
-                        launchUrl(Uri.parse('mailto://nialixus@gmail.com')),
-                    text: 'Contact Us',
-                    style: context.text.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: context.color.primary,
+                  Semantics(
+                    label: 'Author Email',
+                    link: true,
+                    child: DButton.text(
+                      onTap: () =>
+                          launchUrl(Uri.parse('mailto://nialixus@gmail.com')),
+                      text: 'Contact Us',
+                      style: context.text.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: context.color.primary,
+                      ),
+                      color: Colors.transparent,
                     ),
-                    color: Colors.transparent,
                   ),
 
                   // Blog Button
-                  DButton.text(
-                    onTap: () => launchUrl(Uri.parse(
-                        'https://github.com/Nialixus/flutter_landing_page')),
-                    text: 'Blog',
-                    style: context.text.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: context.color.primary,
+                  Semantics(
+                    label: 'Github Repository',
+                    link: true,
+                    child: DButton.text(
+                      onTap: () => launchUrl(Uri.parse(
+                          'https://github.com/Nialixus/flutter_landing_page')),
+                      text: 'Blog',
+                      style: context.text.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: context.color.primary,
+                      ),
+                      color: Colors.transparent,
                     ),
-                    color: Colors.transparent,
                   ),
                 ],
               ),
             ),
 
             // Copyright text
-            DButton.text(
-              mainAxisSize: MainAxisSize.min,
-              text: "© 2023 Louis Wiwawan",
-              style: context.text.bodyMedium?.copyWith(
-                color: context.color.background.withOpacity(0.25),
-                fontWeight: FontWeight.w400,
-                fontSize: 11.0,
-              ),
-              textAlign: TextAlign.center,
-              color: Colors.transparent,
-              onTap: () => launchUrl(
-                Uri.parse(
-                  'https://github.com/Nialixus/'
-                  'flutter_landing_page/blob/main/LICENSE',
+            Semantics(
+              label: 'Copyright 2023 Louis Wiwawan',
+              child: DButton.text(
+                mainAxisSize: MainAxisSize.min,
+                text: "© 2023 Louis Wiwawan",
+                style: context.text.bodyMedium?.copyWith(
+                  color: context.color.background.withOpacity(0.25),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 11.0,
+                ),
+                textAlign: TextAlign.center,
+                color: Colors.transparent,
+                onTap: () => launchUrl(
+                  Uri.parse(
+                    'https://github.com/Nialixus/'
+                    'flutter_landing_page/blob/main/LICENSE',
+                  ),
                 ),
               ),
             ),

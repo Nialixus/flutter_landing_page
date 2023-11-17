@@ -58,7 +58,7 @@ class Background extends StatelessWidget {
   }) {
     return Background.builder(
         (_, __) => DChangeBuilder(
-              value: Env.controller.instance.scrollController!,
+              value: Env.controller.scroll,
               builder: (context, value, child) {
                 double position = 0.0;
 

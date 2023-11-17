@@ -24,11 +24,7 @@ class NavigationDrawer extends Drawer {
             top: Constants.spacing,
             bottom: Constants.spacing * 3.0,
           ),
-          child: Text('🎉  FLUTTER',
-              style: context.text.titleLarge?.copyWith(
-                  color: context.color.background,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 20.0)),
+          child: NavigationHeader.logo(),
         ),
         Expanded(
             child: ValueListenableBuilder(
@@ -36,38 +32,44 @@ class NavigationDrawer extends Drawer {
                 builder: (context, value, _) => SingleChildScrollView(child:
                         Column(children: Env.navigations.to((index, item) {
                       final isSelected = value == item.id;
-                      return DButton.text(
-                        text: item.name,
-                        mainAxisSize: MainAxisSize.max,
-                        color: context.color.background
-                            .withOpacity(isSelected ? 0.25 : 0.0),
-                        padding: const EdgeInsets.all(Constants.spacing),
-                        margin: const EdgeInsets.only(
-                          left: Constants.spacing * 0.5,
-                          bottom: Constants.spacing * 0.5,
+                      return Semantics(
+                        label: item.name,
+                        link: true,
+                        child: DButton.text(
+                          text: item.name,
+                          mainAxisSize: MainAxisSize.max,
+                          color: context.color.background
+                              .withOpacity(isSelected ? 0.25 : 0.0),
+                          padding: const EdgeInsets.all(Constants.spacing),
+                          margin: const EdgeInsets.only(
+                            left: Constants.spacing * 0.5,
+                            bottom: Constants.spacing * 0.5,
+                          ),
+                          style: context.text.bodyMedium?.copyWith(
+                              color: context.color.background
+                                  .withOpacity(isSelected ? 1.0 : 0.5),
+                              fontWeight: isSelected
+                                  ? FontWeight.w700
+                                  : FontWeight.normal),
+                          borderRadius: const BorderRadius.only(
+                              topLeft:
+                                  Radius.circular(Constants.spacing * 0.25),
+                              bottomLeft:
+                                  Radius.circular(Constants.spacing * 0.25)),
+                          prefix: Padding(
+                              padding: const EdgeInsets.only(
+                                right: Constants.spacing * 0.5,
+                              ),
+                              child: DImage(
+                                source: isSelected
+                                    ? item.activeIcon
+                                    : item.inactiveIcon,
+                                color: context.color.background,
+                                size: const Size.square(Constants.spacing),
+                              )),
+                          onTap: () =>
+                              Env.controller.onTap(context, id: item.id),
                         ),
-                        style: context.text.bodyMedium?.copyWith(
-                            color: context.color.background
-                                .withOpacity(isSelected ? 1.0 : 0.5),
-                            fontWeight: isSelected
-                                ? FontWeight.w700
-                                : FontWeight.normal),
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(Constants.spacing * 0.25),
-                            bottomLeft:
-                                Radius.circular(Constants.spacing * 0.25)),
-                        prefix: Padding(
-                            padding: const EdgeInsets.only(
-                              right: Constants.spacing * 0.5,
-                            ),
-                            child: DImage(
-                              source: isSelected
-                                  ? item.activeIcon
-                                  : item.inactiveIcon,
-                              color: context.color.background,
-                              size: const Size.square(Constants.spacing),
-                            )),
-                        onTap: () => Env.controller.onTap(context, id: item.id),
                       );
                     })))))
       ]));

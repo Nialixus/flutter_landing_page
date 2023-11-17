@@ -100,25 +100,29 @@ class HomePricing extends StatelessWidget {
                 duration: Duration(milliseconds: 750),
               ),
             ],
-            child: Column(
-              children: [
-                // Display the title
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: context.text.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w900,
-                    height: 1.1,
+            child: MergeSemantics(
+              child: Column(
+                children: [
+                  // Display the title
+                  Text(
+                    title,
+                    semanticsLabel: title,
+                    textAlign: TextAlign.center,
+                    style: context.text.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      height: 1.1,
+                    ),
                   ),
-                ),
 
-                // Display the subtitle
-                Text(
-                  '\n$subtitle',
-                  style: context.text.bodySmall,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                  // Display the subtitle
+                  Text(
+                    '\n$subtitle',
+                    semanticsLabel: subtitle,
+                    style: context.text.bodySmall,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -155,116 +159,134 @@ class HomePricing extends StatelessWidget {
               borderRadius: BorderRadius.circular(Constants.spacing),
               color: context.color.background,
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Display item title
-                Text(
-                  item.title,
-                  style: context.text.titleMedium?.copyWith(
-                    color: context.color.onBackground,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                // Display pricing label
-                Padding(
-                  padding: const EdgeInsets.all(Constants.spacing * 2.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        // Display price currency
-                        Text(
-                          '\$',
-                          style: context.text.bodyMedium?.copyWith(
-                            color: context.color.onBackground,
-                            fontSize: 20.0,
-                          ),
-                        ),
-
-                        // Display the price
-                        Text(
-                          "${item.price}",
-                          style: context.text.titleLarge?.copyWith(
-                            fontSize: 40.0,
-                            fontWeight: FontWeight.w900,
-                            color: context.color.onBackground,
-                            height: 1.1,
-                          ),
-                        ),
-
-                        // Displa the period
-                        Text(
-                          "/${item.type.name}",
-                          style: context.text.bodyMedium?.copyWith(
-                            color: context.color.onBackground.withOpacity(0.5),
-                          ),
-                        ),
-                      ],
+            child: MergeSemantics(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Display item title
+                  Text(
+                    item.title,
+                    semanticsLabel: item.title,
+                    style: context.text.titleMedium?.copyWith(
+                      color: context.color.onBackground,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
 
-                // Display card list
-                Flexible(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: item.benefits.split("\n").to(
-                            (index, item) => Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: Constants.spacing),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // Display benefit checkmark
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: Constants.spacing),
-                                    child: Text(
-                                      "✓",
-                                      style: context.text.bodyMedium?.copyWith(
-                                        color: context.color.primary,
-                                      ),
-                                    ),
-                                  ),
-
-                                  // Display benefit description
-                                  Expanded(
-                                    child: Text(
-                                      item,
-                                      textAlign: TextAlign.justify,
-                                      style: context.text.bodySmall?.copyWith(
-                                        color: context.color.onBackground,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                  // Display pricing label
+                  Padding(
+                    padding: const EdgeInsets.all(Constants.spacing * 2.0),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          // Display price currency
+                          Text(
+                            '\$',
+                            semanticsLabel: 'USD',
+                            style: context.text.bodyMedium?.copyWith(
+                              color: context.color.onBackground,
+                              fontSize: 20.0,
                             ),
                           ),
+
+                          // Display the price
+                          Text(
+                            "${item.price}",
+                            semanticsLabel: item.price.toString(),
+                            style: context.text.titleLarge?.copyWith(
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.w900,
+                              color: context.color.onBackground,
+                              height: 1.1,
+                            ),
+                          ),
+
+                          // Displa the period
+                          Text(
+                            "/${item.type.name}",
+                            semanticsLabel: item.type.name.toString(),
+                            style: context.text.bodyMedium?.copyWith(
+                              color:
+                                  context.color.onBackground.withOpacity(0.5),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
 
-                // Display Upgrade button
-                DButton.text(
-                  onTap: () {},
-                  color: context.color.primary,
-                  text: 'Upgrade',
-                  style: context.text.bodyMedium?.copyWith(
-                    color: context.color.background,
+                  // Display card list
+                  Flexible(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: item.benefits.split("\n").to(
+                              (index, item) => Padding(
+                                padding: const EdgeInsets.only(
+                                    bottom: Constants.spacing),
+                                child: MergeSemantics(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      // Display benefit checkmark
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: Constants.spacing),
+                                        child: Text(
+                                          "✓",
+                                          semanticsLabel: 'Including',
+                                          style:
+                                              context.text.bodyMedium?.copyWith(
+                                            color: context.color.primary,
+                                          ),
+                                        ),
+                                      ),
+
+                                      // Display benefit description
+                                      Expanded(
+                                        child: Text(
+                                          item,
+                                          semanticsLabel: item,
+                                          textAlign: TextAlign.justify,
+                                          style:
+                                              context.text.bodySmall?.copyWith(
+                                            color: context.color.onBackground,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                      ),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(Constants.spacing),
-                  margin: const EdgeInsets.only(top: Constants.spacing),
-                ),
-              ],
+
+                  // Display Upgrade button
+                  Semantics(
+                    label: 'Upgrade Your Plan',
+                    link: true,
+                    child: DButton.text(
+                      onTap: () => context.go('/dashboard'),
+                      color: context.color.primary,
+                      text: 'Upgrade',
+                      style: context.text.bodyMedium?.copyWith(
+                        color: context.color.background,
+                      ),
+                      borderRadius: BorderRadius.circular(Constants.spacing),
+                      margin: const EdgeInsets.only(top: Constants.spacing),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );

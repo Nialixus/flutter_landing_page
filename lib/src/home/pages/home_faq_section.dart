@@ -98,25 +98,29 @@ class HomeFAQ extends StatelessWidget {
                 duration: Duration(milliseconds: 750),
               ),
             ],
-            child: Column(
-              children: [
-                // Display the title with specific styling
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: context.text.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w900,
-                    height: 1.1,
+            child: MergeSemantics(
+              child: Column(
+                children: [
+                  // Display the title with specific styling
+                  Text(
+                    title,
+                    semanticsLabel: title,
+                    textAlign: TextAlign.center,
+                    style: context.text.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      height: 1.1,
+                    ),
                   ),
-                ),
 
-                // Display the subtitle with specific styling
-                Text(
-                  '\n$subtitle',
-                  style: context.text.bodySmall,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                  // Display the subtitle with specific styling
+                  Text(
+                    '\n$subtitle',
+                    semanticsLabel: subtitle,
+                    style: context.text.bodySmall,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -154,35 +158,39 @@ class HomeFAQ extends StatelessWidget {
               color: context.color.background,
               borderRadius: BorderRadius.circular(Constants.spacing * 0.25),
             ),
-            child: DTileWrapper(
-              (isExpanded) => ExpansionTile(
-                initiallyExpanded: true,
-                trailing: Icon(isExpanded ? Icons.remove : Icons.add),
-                title: Text(
-                  item.title,
-                  style: context.text.bodyMedium?.copyWith(
-                    color: context.color.onBackground,
-                  ),
-                ),
-                children: [
-                  Container(
-                    color: context.color.surface,
-                    padding: const EdgeInsets.all(Constants.spacing),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            item.subtitle,
-                            textAlign: TextAlign.start,
-                            style: context.text.bodySmall?.copyWith(
-                              color: context.color.outline,
-                            ),
-                          ),
-                        ),
-                      ],
+            child: MergeSemantics(
+              child: DTileWrapper(
+                (isExpanded) => ExpansionTile(
+                  initiallyExpanded: true,
+                  trailing: Icon(isExpanded ? Icons.remove : Icons.add),
+                  title: Text(
+                    item.title,
+                    semanticsLabel: item.title,
+                    style: context.text.bodyMedium?.copyWith(
+                      color: context.color.onBackground,
                     ),
                   ),
-                ],
+                  children: [
+                    Container(
+                      color: context.color.surface,
+                      padding: const EdgeInsets.all(Constants.spacing),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              item.subtitle,
+                              semanticsLabel: item.subtitle,
+                              textAlign: TextAlign.start,
+                              style: context.text.bodySmall?.copyWith(
+                                color: context.color.outline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

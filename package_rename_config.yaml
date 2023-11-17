@@ -1,0 +1,31 @@
+package_rename_config:
+  android:
+    app_name: Flutter Landing Page
+    package_name: app.web.nialixus-landing-page
+    override_old_package: app.web.nialixus-landing-page
+    lang: kotlin
+
+  ios:
+    app_name: Flutter Landing Page
+    bundle_name: flutterLandingPage
+    package_name: app.web.nialixus-landing-page
+
+  web:
+    app_name: Flutter Landing Page
+    description: A responsive landing page template for flutter. Perfect for showcasing your product or service with a clean lead-in, FAQs, pricing, and key features.
+
+  linux:
+    app_name: Flutter Landing Page
+    package_name: app.web.nialixus-landing-page
+    exe_name: flutter-landing-page
+
+  windows:
+    app_name: Flutter Landing Page
+    organization: Nialixus
+    copyright_notice: Copyright ©️ 2023 Louis Wiwawan. All rights reserved.
+    exe_name: flutter-landing-page
+
+  macos:
+    app_name: Flutter Landing Page
+    package_name: app.web.nialixus-landing-page
+    copyright_notice: Copyright ©️ 2023 Louis Wiwawan. All rights reserved.

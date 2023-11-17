@@ -1,11 +1,13 @@
 name: flutter_landing_page
-description: A responsive landing page template for flutter. Perfect for showcasing your product or service with a clean lead-in, FAQs, pricing, and key features.
+description: A responsive landing page template for flutter. Perfect for
+  showcasing your product or service with a clean lead-in, FAQs, pricing, and
+  key features.
 publish_to: 'none'
-version: 1.0.0
+version: 1.1.0
 homepage: https://nialixus-landing-page.web.app
 repository: https://github.com/Nialixus/flutter_landing_page.git
 issue_tracker: https://github.com/Nialixus/flutter_landing_page/issues
-funding: 
+funding:
   - https://www.buymeacoffee.com/nialixus
 topics:
   - template
@@ -27,14 +29,16 @@ dependencies:
     sdk: flutter
   flutter_animate: ^4.2.0+1
   go_router: ^12.0.1
+  meta_seo: ^3.0.7
   scroll_to_id: ^1.5.1
   url_launcher: ^6.2.1
   url_strategy: ^0.2.0
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.3
   flutter_test:
     sdk: flutter
+  package_rename: ^1.5.1
 
 flutter:
   uses-material-design: true

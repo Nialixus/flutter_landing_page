@@ -7,22 +7,33 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectionArea(
       child: Background.parallax(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: NavigationHeader(),
-          drawer: NavigationDrawer.of(context),
-          body: InteractiveScrollViewer(
-            scrollToId: Env.controller.instance,
-            scrollDirection: Axis.vertical,
-            children: [
-              ...Env.navigations.to(HomePage.scrollContent),
-              ScrollContent(
-                id: 'footer',
-                child: const NavigationFooter(),
-              )
-            ],
+        child: RawKeyboardListener(
+          focusNode: Env.controller.node,
+          onKey: Env.controller.onKey,
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: NavigationHeader(),
+            drawer: NavigationDrawer.of(context),
+            body: Builder(builder: (context) {
+              // Request focus when the node has been attached.
+              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                FocusScope.of(context).requestFocus(Env.controller.node);
+              });
+
+              return InteractiveScrollViewer(
+                scrollToId: Env.controller.instance,
+                scrollDirection: Axis.vertical,
+                children: [
+                  ...Env.navigations.to(HomePage.scrollContent),
+                  ScrollContent(
+                    id: 'footer',
+                    child: const NavigationFooter(),
+                  )
+                ],
+              );
+            }),
+            floatingActionButton: HomePage.floatingButton(),
           ),
-          floatingActionButton: HomePage.floatingButton(),
         ),
       ),
     );
@@ -51,7 +62,10 @@ class HomePage extends StatelessWidget {
             context,
             id: Env.navigations.first.id,
           ),
-          child: const Icon(Icons.arrow_upward_rounded),
+          child: const Icon(
+            Icons.arrow_upward_rounded,
+            semanticLabel: 'Go back to top',
+          ),
         );
       }),
     );

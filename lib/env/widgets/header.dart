@@ -17,7 +17,7 @@ class NavigationHeader extends AppBar {
         tag: '#Header',
         child: Builder(builder: (context) {
           return DChangeBuilder(
-            value: Env.controller.instance.scrollController!,
+            value: Env.controller.scroll,
             builder: (context, value, child) {
               // Calculate the scroll progress
               double position() {
@@ -55,11 +55,15 @@ class NavigationHeader extends AppBar {
             },
             child: Row(mainAxisSize: MainAxisSize.max, children: [
               if (!context.isDesktop)
-                DButton(
-                  onTap: () => Scaffold.of(context).openDrawer(),
-                  padding: const EdgeInsets.all(Constants.spacing * 0.75),
-                  color: Colors.transparent,
-                  child: Icon(Icons.menu, color: context.color.background),
+                Semantics(
+                  label: 'Open Menu',
+                  link: true,
+                  child: DButton(
+                    onTap: () => Scaffold.of(context).openDrawer(),
+                    padding: const EdgeInsets.all(Constants.spacing * 0.75),
+                    color: Colors.transparent,
+                    child: Icon(Icons.menu, color: context.color.background),
+                  ),
                 ),
               NavigationHeader.logo(),
               context.isDesktop
@@ -70,15 +74,19 @@ class NavigationHeader extends AppBar {
                         children: [
                           // Display navigation buttons for desktop
                           for (var navigation in Env.navigations)
-                            DButton.text(
-                              text: navigation.name,
-                              color: Colors.transparent,
-                              style: context.text.bodyMedium?.copyWith(
-                                color: context.color.background,
-                              ),
-                              onTap: () => Env.controller.onTap(
-                                context,
-                                id: navigation.id,
+                            Semantics(
+                              label: navigation.name,
+                              link: true,
+                              child: DButton.text(
+                                text: navigation.name,
+                                color: Colors.transparent,
+                                style: context.text.bodyMedium?.copyWith(
+                                  color: context.color.background,
+                                ),
+                                onTap: () => Env.controller.onTap(
+                                  context,
+                                  id: navigation.id,
+                                ),
                               ),
                             ),
                         ],
@@ -87,16 +95,20 @@ class NavigationHeader extends AppBar {
                   : const Spacer(),
               Theme(
                 data: context.theme,
-                child: DButton.text(
-                  text: 'Get Started',
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 8.0),
-                  borderRadius: BorderRadius.circular(20.0),
-                  style: context.text.bodyMedium?.copyWith(
-                    color: context.color.primary,
-                    fontWeight: FontWeight.w600,
+                child: Semantics(
+                  label: 'Go to dashboard',
+                  link: true,
+                  child: DButton.text(
+                    text: 'Get Started',
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
+                    borderRadius: BorderRadius.circular(20.0),
+                    style: context.text.bodyMedium?.copyWith(
+                      color: context.color.primary,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    onTap: () => context.go('/dashboard'),
                   ),
-                  onTap: () => context.go('/dashboard'),
                 ),
               )
             ]),
@@ -108,7 +120,7 @@ class NavigationHeader extends AppBar {
     return Builder(builder: (context) {
       return Text(
         // Your logo
-        '🎉  FLUTTER',
+        '🎉  FLUTTER', semanticsLabel: 'Flutter Landing Page Logo',
         style: context.text.titleLarge?.copyWith(
           color: context.color.background,
           fontWeight: FontWeight.w900,
