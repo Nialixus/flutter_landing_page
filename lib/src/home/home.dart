@@ -5,6 +5,7 @@ import 'package:flutter_landing_page/env/env.dart';
 import 'package:go_router/go_router.dart';
 import 'package:scroll_to_id/scroll_to_id.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:seo/seo.dart';
 
 part 'pages/home_page.dart';
 part 'pages/home_faq_section.dart';

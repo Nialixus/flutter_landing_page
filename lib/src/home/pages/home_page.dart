@@ -14,24 +14,17 @@ class HomePage extends StatelessWidget {
             backgroundColor: Colors.transparent,
             appBar: NavigationHeader(),
             drawer: NavigationDrawer.of(context),
-            body: Builder(builder: (context) {
-              // Request focus when the node has been attached.
-              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                FocusScope.of(context).requestFocus(Env.controller.node);
-              });
-
-              return InteractiveScrollViewer(
-                scrollToId: Env.controller.instance,
-                scrollDirection: Axis.vertical,
-                children: [
-                  ...Env.navigations.to(HomePage.scrollContent),
-                  ScrollContent(
-                    id: 'footer',
-                    child: const NavigationFooter(),
-                  )
-                ],
-              );
-            }),
+            body: InteractiveScrollViewer(
+              scrollToId: Env.controller.instance,
+              scrollDirection: Axis.vertical,
+              children: [
+                ...Env.navigations.to(HomePage.scrollContent),
+                ScrollContent(
+                  id: 'footer',
+                  child: const NavigationFooter(),
+                )
+              ],
+            ),
             floatingActionButton: HomePage.floatingButton(),
           ),
         ),
@@ -62,9 +55,13 @@ class HomePage extends StatelessWidget {
             context,
             id: Env.navigations.first.id,
           ),
-          child: const Icon(
-            Icons.arrow_upward_rounded,
-            semanticLabel: 'Go back to top',
+          child: Seo.link(
+            anchor: 'Go back to top',
+            href: '/?section=${Env.navigations.first.id}',
+            child: const Icon(
+              Icons.arrow_upward_rounded,
+              semanticLabel: 'Go back to top',
+            ),
           ),
         );
       }),

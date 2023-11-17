@@ -102,22 +102,30 @@ class HomeFAQ extends StatelessWidget {
               child: Column(
                 children: [
                   // Display the title with specific styling
-                  Text(
-                    title,
-                    semanticsLabel: title,
-                    textAlign: TextAlign.center,
-                    style: context.text.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w900,
-                      height: 1.1,
+                  Seo.text(
+                    text: title,
+                    style: TextTagStyle.h2,
+                    child: Text(
+                      title,
+                      semanticsLabel: title,
+                      textAlign: TextAlign.center,
+                      style: context.text.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w900,
+                        height: 1.1,
+                      ),
                     ),
                   ),
 
                   // Display the subtitle with specific styling
-                  Text(
-                    '\n$subtitle',
-                    semanticsLabel: subtitle,
-                    style: context.text.bodySmall,
-                    textAlign: TextAlign.center,
+                  Seo.text(
+                    text: subtitle,
+                    style: TextTagStyle.p,
+                    child: Text(
+                      '\n$subtitle',
+                      semanticsLabel: subtitle,
+                      style: context.text.bodySmall,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),
@@ -163,11 +171,15 @@ class HomeFAQ extends StatelessWidget {
                 (isExpanded) => ExpansionTile(
                   initiallyExpanded: true,
                   trailing: Icon(isExpanded ? Icons.remove : Icons.add),
-                  title: Text(
-                    item.title,
-                    semanticsLabel: item.title,
-                    style: context.text.bodyMedium?.copyWith(
-                      color: context.color.onBackground,
+                  title: Seo.text(
+                    text: item.title,
+                    style: TextTagStyle.h4,
+                    child: Text(
+                      item.title,
+                      semanticsLabel: item.title,
+                      style: context.text.bodyMedium?.copyWith(
+                        color: context.color.onBackground,
+                      ),
                     ),
                   ),
                   children: [
@@ -177,12 +189,16 @@ class HomeFAQ extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            child: Text(
-                              item.subtitle,
-                              semanticsLabel: item.subtitle,
-                              textAlign: TextAlign.start,
-                              style: context.text.bodySmall?.copyWith(
-                                color: context.color.outline,
+                            child: Seo.text(
+                              text: item.subtitle,
+                              style: TextTagStyle.p,
+                              child: Text(
+                                item.subtitle,
+                                semanticsLabel: item.subtitle,
+                                textAlign: TextAlign.start,
+                                style: context.text.bodySmall?.copyWith(
+                                  color: context.color.outline,
+                                ),
                               ),
                             ),
                           ),

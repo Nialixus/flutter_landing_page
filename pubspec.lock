@@ -393,6 +393,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.7.3"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.27.7"
   scroll_to_id:
     dependency: "direct main"
     description:
@@ -401,6 +409,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  seo:
+    dependency: "direct main"
+    description:
+      name: seo
+      sha256: "72c877adcaa4f2d4eb49428e0c5560669fcca4a264246641ad2c78e4abb70812"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   shelf:
     dependency: transitive
     description:

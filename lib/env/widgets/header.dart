@@ -77,15 +77,19 @@ class NavigationHeader extends AppBar {
                             Semantics(
                               label: navigation.name,
                               link: true,
-                              child: DButton.text(
-                                text: navigation.name,
-                                color: Colors.transparent,
-                                style: context.text.bodyMedium?.copyWith(
-                                  color: context.color.background,
-                                ),
-                                onTap: () => Env.controller.onTap(
-                                  context,
-                                  id: navigation.id,
+                              child: Seo.link(
+                                anchor: navigation.name,
+                                href: '/?section=${navigation.id}',
+                                child: DButton.text(
+                                  text: navigation.name,
+                                  color: Colors.transparent,
+                                  style: context.text.bodyMedium?.copyWith(
+                                    color: context.color.background,
+                                  ),
+                                  onTap: () => Env.controller.onTap(
+                                    context,
+                                    id: navigation.id,
+                                  ),
                                 ),
                               ),
                             ),
@@ -98,16 +102,20 @@ class NavigationHeader extends AppBar {
                 child: Semantics(
                   label: 'Go to dashboard',
                   link: true,
-                  child: DButton.text(
-                    text: 'Get Started',
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8.0),
-                    borderRadius: BorderRadius.circular(20.0),
-                    style: context.text.bodyMedium?.copyWith(
-                      color: context.color.primary,
-                      fontWeight: FontWeight.w600,
+                  child: Seo.link(
+                    anchor: 'Get Started',
+                    href: '/dashboard',
+                    child: DButton.text(
+                      text: 'Get Started',
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 8.0),
+                      borderRadius: BorderRadius.circular(20.0),
+                      style: context.text.bodyMedium?.copyWith(
+                        color: context.color.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      onTap: () => context.go('/dashboard'),
                     ),
-                    onTap: () => context.go('/dashboard'),
                   ),
                 ),
               )
@@ -118,13 +126,17 @@ class NavigationHeader extends AppBar {
 
   static Widget logo() {
     return Builder(builder: (context) {
-      return Text(
-        // Your logo
-        '🎉  FLUTTER', semanticsLabel: 'Flutter Landing Page Logo',
-        style: context.text.titleLarge?.copyWith(
-          color: context.color.background,
-          fontWeight: FontWeight.w900,
-          fontSize: 20.0,
+      return Seo.text(
+        text: '🎉  FLUTTER',
+        style: TextTagStyle.h1,
+        child: Text(
+          // Your logo
+          '🎉  FLUTTER', semanticsLabel: 'Flutter Landing Page Logo',
+          style: context.text.titleLarge?.copyWith(
+            color: context.color.background,
+            fontWeight: FontWeight.w900,
+            fontSize: 20.0,
+          ),
         ),
       );
     });

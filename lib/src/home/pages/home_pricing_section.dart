@@ -104,22 +104,30 @@ class HomePricing extends StatelessWidget {
               child: Column(
                 children: [
                   // Display the title
-                  Text(
-                    title,
-                    semanticsLabel: title,
-                    textAlign: TextAlign.center,
-                    style: context.text.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w900,
-                      height: 1.1,
+                  Seo.text(
+                    text: title,
+                    style: TextTagStyle.h2,
+                    child: Text(
+                      title,
+                      semanticsLabel: title,
+                      textAlign: TextAlign.center,
+                      style: context.text.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w900,
+                        height: 1.1,
+                      ),
                     ),
                   ),
 
                   // Display the subtitle
-                  Text(
-                    '\n$subtitle',
-                    semanticsLabel: subtitle,
-                    style: context.text.bodySmall,
-                    textAlign: TextAlign.center,
+                  Seo.text(
+                    text: subtitle,
+                    style: TextTagStyle.p,
+                    child: Text(
+                      '\n$subtitle',
+                      semanticsLabel: subtitle,
+                      style: context.text.bodySmall,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),
@@ -164,12 +172,16 @@ class HomePricing extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // Display item title
-                  Text(
-                    item.title,
-                    semanticsLabel: item.title,
-                    style: context.text.titleMedium?.copyWith(
-                      color: context.color.onBackground,
-                      fontWeight: FontWeight.bold,
+                  Seo.text(
+                    text: item.title,
+                    style: TextTagStyle.h2,
+                    child: Text(
+                      item.title,
+                      semanticsLabel: item.title,
+                      style: context.text.titleMedium?.copyWith(
+                        color: context.color.onBackground,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
 
@@ -184,34 +196,46 @@ class HomePricing extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           // Display price currency
-                          Text(
-                            '\$',
-                            semanticsLabel: 'USD',
-                            style: context.text.bodyMedium?.copyWith(
-                              color: context.color.onBackground,
-                              fontSize: 20.0,
+                          Seo.text(
+                            text: '\$',
+                            style: TextTagStyle.h4,
+                            child: Text(
+                              '\$',
+                              semanticsLabel: 'USD',
+                              style: context.text.bodyMedium?.copyWith(
+                                color: context.color.onBackground,
+                                fontSize: 20.0,
+                              ),
                             ),
                           ),
 
                           // Display the price
-                          Text(
-                            "${item.price}",
-                            semanticsLabel: item.price.toString(),
-                            style: context.text.titleLarge?.copyWith(
-                              fontSize: 40.0,
-                              fontWeight: FontWeight.w900,
-                              color: context.color.onBackground,
-                              height: 1.1,
+                          Seo.text(
+                            text: item.price.toString(),
+                            style: TextTagStyle.h2,
+                            child: Text(
+                              "${item.price}",
+                              semanticsLabel: item.price.toString(),
+                              style: context.text.titleLarge?.copyWith(
+                                fontSize: 40.0,
+                                fontWeight: FontWeight.w900,
+                                color: context.color.onBackground,
+                                height: 1.1,
+                              ),
                             ),
                           ),
 
-                          // Displa the period
-                          Text(
-                            "/${item.type.name}",
-                            semanticsLabel: item.type.name.toString(),
-                            style: context.text.bodyMedium?.copyWith(
-                              color:
-                                  context.color.onBackground.withOpacity(0.5),
+                          // Display the period
+                          Seo.text(
+                            text: item.type.name,
+                            style: TextTagStyle.h4,
+                            child: Text(
+                              "/${item.type.name}",
+                              semanticsLabel: item.type.name.toString(),
+                              style: context.text.bodyMedium?.copyWith(
+                                color:
+                                    context.color.onBackground.withOpacity(0.5),
+                              ),
                             ),
                           ),
                         ],
@@ -239,25 +263,33 @@ class HomePricing extends StatelessWidget {
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             right: Constants.spacing),
-                                        child: Text(
-                                          "✓",
-                                          semanticsLabel: 'Including',
-                                          style:
-                                              context.text.bodyMedium?.copyWith(
-                                            color: context.color.primary,
+                                        child: Seo.text(
+                                          text: '✓',
+                                          style: TextTagStyle.p,
+                                          child: Text(
+                                            "✓",
+                                            semanticsLabel: 'Including',
+                                            style: context.text.bodyMedium
+                                                ?.copyWith(
+                                              color: context.color.primary,
+                                            ),
                                           ),
                                         ),
                                       ),
 
                                       // Display benefit description
                                       Expanded(
-                                        child: Text(
-                                          item,
-                                          semanticsLabel: item,
-                                          textAlign: TextAlign.justify,
-                                          style:
-                                              context.text.bodySmall?.copyWith(
-                                            color: context.color.onBackground,
+                                        child: Seo.text(
+                                          text: item,
+                                          style: TextTagStyle.p,
+                                          child: Text(
+                                            item,
+                                            semanticsLabel: item,
+                                            textAlign: TextAlign.justify,
+                                            style: context.text.bodySmall
+                                                ?.copyWith(
+                                              color: context.color.onBackground,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -274,15 +306,19 @@ class HomePricing extends StatelessWidget {
                   Semantics(
                     label: 'Upgrade Your Plan',
                     link: true,
-                    child: DButton.text(
-                      onTap: () => context.go('/dashboard'),
-                      color: context.color.primary,
-                      text: 'Upgrade',
-                      style: context.text.bodyMedium?.copyWith(
-                        color: context.color.background,
+                    child: Seo.link(
+                      anchor: 'Upgrade',
+                      href: '/dashboard',
+                      child: DButton.text(
+                        onTap: () => context.go('/dashboard'),
+                        color: context.color.primary,
+                        text: 'Upgrade',
+                        style: context.text.bodyMedium?.copyWith(
+                          color: context.color.background,
+                        ),
+                        borderRadius: BorderRadius.circular(Constants.spacing),
+                        margin: const EdgeInsets.only(top: Constants.spacing),
                       ),
-                      borderRadius: BorderRadius.circular(Constants.spacing),
-                      margin: const EdgeInsets.only(top: Constants.spacing),
                     ),
                   ),
                 ],

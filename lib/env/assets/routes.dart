@@ -4,6 +4,11 @@ class Routes {
   static GoRoute home = GoRoute(
       path: '/',
       builder: (context, state) {
+        // Request focus when the node has been attached.
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          FocusScope.of(context).requestFocus(Env.controller.node);
+        });
+
         if (kIsWeb) {
           MetaSEO()
             ..ogTitle(ogTitle: 'Flutter Landing Page')

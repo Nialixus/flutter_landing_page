@@ -8,6 +8,7 @@ import 'package:flutter_landing_page/src/home/home.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meta_seo/meta_seo.dart';
 import 'package:scroll_to_id/scroll_to_id.dart';
+import 'package:seo/seo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 part 'assets/routes.dart';

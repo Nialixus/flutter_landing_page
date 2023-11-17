@@ -150,22 +150,30 @@ class HomeFeatures extends StatelessWidget {
               child: Column(
                 children: [
                   // Display title
-                  Text(
-                    title,
-                    semanticsLabel: title,
-                    textAlign: TextAlign.center,
-                    style: context.text.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w900,
-                      height: 1.1,
+                  Seo.text(
+                    text: title,
+                    style: TextTagStyle.h2,
+                    child: Text(
+                      title,
+                      semanticsLabel: title,
+                      textAlign: TextAlign.center,
+                      style: context.text.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w900,
+                        height: 1.1,
+                      ),
                     ),
                   ),
 
                   // Ddisplay subtitle
-                  Text(
-                    '\n$subtitle',
-                    semanticsLabel: subtitle,
-                    style: context.text.bodySmall,
-                    textAlign: TextAlign.center,
+                  Seo.text(
+                    text: subtitle,
+                    style: TextTagStyle.p,
+                    child: Text(
+                      '\n$subtitle',
+                      semanticsLabel: subtitle,
+                      style: context.text.bodySmall,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),
@@ -202,10 +210,14 @@ class HomeFeatures extends StatelessWidget {
                 Semantics(
                   image: true,
                   label: '${item.title} Icon',
-                  child: DImage(
-                    source: item.source,
-                    size: const Size.square(Constants.spacing * 1.5),
-                    color: context.color.primary,
+                  child: Seo.image(
+                    alt: '${item.title} Icon',
+                    src: 'assets/${item.source}',
+                    child: DImage(
+                      source: item.source,
+                      size: const Size.square(Constants.spacing * 1.5),
+                      color: context.color.primary,
+                    ),
                   ),
                 ),
 
@@ -215,23 +227,31 @@ class HomeFeatures extends StatelessWidget {
                     top: Constants.spacing * 0.5,
                     bottom: Constants.spacing,
                   ),
-                  child: Text(
-                    item.title,
-                    semanticsLabel: item.title,
-                    style: context.text.bodyMedium?.copyWith(
-                      color: context.color.primary,
-                      fontWeight: FontWeight.bold,
+                  child: Seo.text(
+                    text: item.title,
+                    style: TextTagStyle.h4,
+                    child: Text(
+                      item.title,
+                      semanticsLabel: item.title,
+                      style: context.text.bodyMedium?.copyWith(
+                        color: context.color.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
 
                 // Display item subtitle
-                Text(
-                  item.subtitle,
-                  semanticsLabel: item.subtitle,
-                  textAlign: TextAlign.justify,
-                  style: context.text.bodySmall
-                      ?.copyWith(color: Colors.grey.shade700),
+                Seo.text(
+                  text: item.subtitle,
+                  style: TextTagStyle.p,
+                  child: Text(
+                    item.subtitle,
+                    semanticsLabel: item.subtitle,
+                    textAlign: TextAlign.justify,
+                    style: context.text.bodySmall
+                        ?.copyWith(color: Colors.grey.shade700),
+                  ),
                 ),
               ],
             ),

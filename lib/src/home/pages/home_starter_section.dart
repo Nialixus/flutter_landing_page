@@ -120,22 +120,30 @@ class HomeStarter extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Display the title
-            Text(
-              title,
-              semanticsLabel: title,
-              style: context.text.titleLarge?.copyWith(
-                fontWeight: FontWeight.w900,
-                height: 1.1,
+            Seo.text(
+              text: title,
+              style: TextTagStyle.h2,
+              child: Text(
+                title,
+                semanticsLabel: title,
+                style: context.text.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  height: 1.1,
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.left,
             ),
 
             // Display the subtitle
-            Text(
-              '\n$subtitle',
-              semanticsLabel: subtitle,
-              style: context.text.bodySmall,
-              textAlign: TextAlign.justify,
+            Seo.text(
+              text: subtitle,
+              style: TextTagStyle.p,
+              child: Text(
+                '\n$subtitle',
+                semanticsLabel: subtitle,
+                style: context.text.bodySmall,
+                textAlign: TextAlign.justify,
+              ),
             ),
           ],
         ),
@@ -189,9 +197,10 @@ class HomeStarter extends StatelessWidget {
                         ?.copyWith(fontWeight: FontWeight.w500),
                     onTap: () {},
                   ),
-                  suffixIcon: // Display "Join Waitlist" button
-                      DButton.text(
-                    onTap: () {},
+
+                  // Display "Join Waitlist" button
+                  suffixIcon: DButton.text(
+                    onTap: () => context.go('/dashboard'),
                     text: 'Join Waitlist',
                     padding: const EdgeInsets.symmetric(
                       horizontal: Constants.spacing,
@@ -239,7 +248,10 @@ class HomeStarter extends StatelessWidget {
         child: Semantics(
           label: 'Flutter Landing Page Thumbnail',
           image: true,
-          child: const DImage(source: 'assets/image/thumbnail.png'),
+          child: Seo.image(
+              alt: 'Flutter Landing Page Thumbnail',
+              src: '/assets/assets/image/thumbnail.png',
+              child: const DImage(source: 'assets/image/thumbnail.png')),
         ),
       ),
     );

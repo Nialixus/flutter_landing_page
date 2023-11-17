@@ -35,40 +35,44 @@ class NavigationDrawer extends Drawer {
                       return Semantics(
                         label: item.name,
                         link: true,
-                        child: DButton.text(
-                          text: item.name,
-                          mainAxisSize: MainAxisSize.max,
-                          color: context.color.background
-                              .withOpacity(isSelected ? 0.25 : 0.0),
-                          padding: const EdgeInsets.all(Constants.spacing),
-                          margin: const EdgeInsets.only(
-                            left: Constants.spacing * 0.5,
-                            bottom: Constants.spacing * 0.5,
+                        child: Seo.link(
+                          anchor: item.name,
+                          href: '/?section=${item.id}',
+                          child: DButton.text(
+                            text: item.name,
+                            mainAxisSize: MainAxisSize.max,
+                            color: context.color.background
+                                .withOpacity(isSelected ? 0.25 : 0.0),
+                            padding: const EdgeInsets.all(Constants.spacing),
+                            margin: const EdgeInsets.only(
+                              left: Constants.spacing * 0.5,
+                              bottom: Constants.spacing * 0.5,
+                            ),
+                            style: context.text.bodyMedium?.copyWith(
+                                color: context.color.background
+                                    .withOpacity(isSelected ? 1.0 : 0.5),
+                                fontWeight: isSelected
+                                    ? FontWeight.w700
+                                    : FontWeight.normal),
+                            borderRadius: const BorderRadius.only(
+                                topLeft:
+                                    Radius.circular(Constants.spacing * 0.25),
+                                bottomLeft:
+                                    Radius.circular(Constants.spacing * 0.25)),
+                            prefix: Padding(
+                                padding: const EdgeInsets.only(
+                                  right: Constants.spacing * 0.5,
+                                ),
+                                child: DImage(
+                                  source: isSelected
+                                      ? item.activeIcon
+                                      : item.inactiveIcon,
+                                  color: context.color.background,
+                                  size: const Size.square(Constants.spacing),
+                                )),
+                            onTap: () =>
+                                Env.controller.onTap(context, id: item.id),
                           ),
-                          style: context.text.bodyMedium?.copyWith(
-                              color: context.color.background
-                                  .withOpacity(isSelected ? 1.0 : 0.5),
-                              fontWeight: isSelected
-                                  ? FontWeight.w700
-                                  : FontWeight.normal),
-                          borderRadius: const BorderRadius.only(
-                              topLeft:
-                                  Radius.circular(Constants.spacing * 0.25),
-                              bottomLeft:
-                                  Radius.circular(Constants.spacing * 0.25)),
-                          prefix: Padding(
-                              padding: const EdgeInsets.only(
-                                right: Constants.spacing * 0.5,
-                              ),
-                              child: DImage(
-                                source: isSelected
-                                    ? item.activeIcon
-                                    : item.inactiveIcon,
-                                color: context.color.background,
-                                size: const Size.square(Constants.spacing),
-                              )),
-                          onTap: () =>
-                              Env.controller.onTap(context, id: item.id),
                         ),
                       );
                     })))))

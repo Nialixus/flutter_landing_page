@@ -41,34 +41,42 @@ class ErrorPage extends StatelessWidget {
                             effects: const [
                               ShakeEffect(delay: Duration(seconds: 3)),
                             ],
-                            child: AutoSizeText(
-                              '${model.id}',
-                              maxLines: 1,
-                              semanticsLabel: '${model.id} Error Code',
-                              style: context.text.titleLarge?.copyWith(
-                                height: 0.0,
-                                fontSize: 120.0,
-                                fontWeight: FontWeight.w900,
-                                shadows: [
-                                  BoxShadow(
-                                    color: context.color.onBackground
-                                        .withOpacity(0.25),
-                                    offset:
-                                        const Offset(0.0, Constants.spacing),
-                                  ),
-                                ],
+                            child: Seo.text(
+                              text: model.id.toString(),
+                              style: TextTagStyle.h1,
+                              child: AutoSizeText(
+                                '${model.id}',
+                                maxLines: 1,
+                                semanticsLabel: '${model.id} Error Code',
+                                style: context.text.titleLarge?.copyWith(
+                                  height: 0.0,
+                                  fontSize: 120.0,
+                                  fontWeight: FontWeight.w900,
+                                  shadows: [
+                                    BoxShadow(
+                                      color: context.color.onBackground
+                                          .withOpacity(0.25),
+                                      offset:
+                                          const Offset(0.0, Constants.spacing),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      Text(
-                        (model.id != null ? '\n' : '') + model.title,
-                        semanticsLabel: model.title,
-                        textAlign: TextAlign.center,
-                        style: context.text.titleLarge?.copyWith(
-                          fontSize: 30.0,
-                          height: 1.0,
-                          fontWeight: FontWeight.bold,
+                      Seo.text(
+                        text: model.title,
+                        style: TextTagStyle.h2,
+                        child: Text(
+                          (model.id != null ? '\n' : '') + model.title,
+                          semanticsLabel: model.title,
+                          textAlign: TextAlign.center,
+                          style: context.text.titleLarge?.copyWith(
+                            fontSize: 30.0,
+                            height: 1.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       Row(
@@ -76,11 +84,15 @@ class ErrorPage extends StatelessWidget {
                           const Spacer(),
                           Expanded(
                             flex: 3,
-                            child: Text(
-                              '\n${model.subtitle}',
-                              semanticsLabel: model.subtitle,
-                              style: context.text.bodyMedium,
-                              textAlign: TextAlign.center,
+                            child: Seo.text(
+                              text: model.subtitle,
+                              style: TextTagStyle.p,
+                              child: Text(
+                                '\n${model.subtitle}',
+                                semanticsLabel: model.subtitle,
+                                style: context.text.bodyMedium,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                           const Spacer()
@@ -93,23 +105,28 @@ class ErrorPage extends StatelessWidget {
                             return Semantics(
                               label: 'Back to Flutter Landing Page',
                               link: true,
-                              child: DButton.text(
-                                margin: const EdgeInsets.all(Constants.spacing),
-                                onTap: onTap ??
-                                    () => Env.controller.onTap(
-                                          context,
-                                          id: Env.navigations.first.id,
-                                        ),
-                                text: 'Back to Home',
-                                borderRadius: BorderRadius.circular(
-                                    Constants.spacing * 0.5),
-                                splashColor:
-                                    context.color.primary.withOpacity(0.1),
-                                prefix: DImage(
-                                  source: 'assets/image/icon_active_home.svg',
-                                  size: const Size.square(
-                                      Constants.spacing * 0.75),
-                                  color: context.color.primary,
+                              child: Seo.link(
+                                anchor: 'Back to Home',
+                                href: '/',
+                                child: DButton.text(
+                                  margin:
+                                      const EdgeInsets.all(Constants.spacing),
+                                  onTap: onTap ??
+                                      () => Env.controller.onTap(
+                                            context,
+                                            id: Env.navigations.first.id,
+                                          ),
+                                  text: 'Back to Home',
+                                  borderRadius: BorderRadius.circular(
+                                      Constants.spacing * 0.5),
+                                  splashColor:
+                                      context.color.primary.withOpacity(0.1),
+                                  prefix: DImage(
+                                    source: 'assets/image/icon_active_home.svg',
+                                    size: const Size.square(
+                                        Constants.spacing * 0.75),
+                                    color: context.color.primary,
+                                  ),
                                 ),
                               ),
                             );
