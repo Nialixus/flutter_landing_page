@@ -4,11 +4,6 @@ class Routes {
   static GoRoute home = GoRoute(
       path: '/',
       builder: (context, state) {
-        // Request focus when the node has been attached.
-        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          FocusScope.of(context).requestFocus(Env.controller.node);
-        });
-
         if (kIsWeb) {
           MetaSEO()
             ..ogTitle(ogTitle: 'Flutter Landing Page')
@@ -30,6 +25,9 @@ class Routes {
                     '45191605/282370539-0cd5e94c-1a31-447a-b7c4-fdba6a58f0f9.png')
             ..nameContent(name: 'twitter:site', content: '@wawan_ariwijaya');
         }
+
+        FocusScope.of(context).requestFocus(Env.controller.node);
+
         return DLogWidget(
           'http://localhost${state.uri}',
           child: const HomePage(),

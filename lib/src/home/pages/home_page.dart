@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
     return SelectionArea(
       child: Background.parallax(
         child: RawKeyboardListener(
+          autofocus: true,
           focusNode: Env.controller.node,
           onKey: Env.controller.onKey,
           child: Scaffold(

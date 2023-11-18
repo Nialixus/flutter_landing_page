@@ -4,7 +4,7 @@
 /linux/
 /macos/
 /web/*
-!/web/robot.txt
+!/web/robots.txt
 !/web/index.html
 !/web/sitemap.xml
 /windows/
