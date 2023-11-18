@@ -3,7 +3,10 @@
 /ios/
 /linux/
 /macos/
-/web/
+/web/*
+!/web/robot.txt
+!/web/index.html
+!/web/sitemap.xml
 /windows/
 /lib/firebase_options.dart
 .github/workflows/

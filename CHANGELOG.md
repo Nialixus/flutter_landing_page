@@ -10,3 +10,7 @@
 ## 1.2.0
 - Add SEO wrapper
 - Fix scope auto focus
+
+## 1.3.0
+- Add Robot.txt
+- Add Sitemap.xml
