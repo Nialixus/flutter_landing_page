@@ -4,33 +4,17 @@ class Routes {
   static GoRoute home = GoRoute(
       path: '/',
       builder: (context, state) {
-        if (kIsWeb) {
-          MetaSEO()
-            ..ogTitle(ogTitle: 'Flutter Landing Page')
-            ..description(
-                description: 'A responsive landing page template for flutter. '
-                    'Perfect for showcasing your product or service with a clean '
-                    'lead-in, FAQs, pricing, and key features.')
-            ..keywords(
-                keywords: 'Flutter, Landing Page, Responsive, Multi-Platform, '
-                    'Template, Flutter Landing Page, Flutter Template')
-            ..author(author: 'Louis Wiwawan')
-            ..ogDescription(
-                ogDescription:
-                    'A responsive landing page template for flutter. '
-                    'Perfect for showcasing your product or service with a clean '
-                    'lead-in, FAQs, pricing, and key features.')
-            ..ogImage(
-                ogImage: 'https://user-images.githubusercontent.com/'
-                    '45191605/282370539-0cd5e94c-1a31-447a-b7c4-fdba6a58f0f9.png')
-            ..nameContent(name: 'twitter:site', content: '@wawan_ariwijaya');
-        }
-
         FocusScope.of(context).requestFocus(Env.controller.node);
 
         return DLogWidget(
           'http://localhost${state.uri}',
-          child: const HomePage(),
+          child: Seo.head(tags: const [
+            MetaTag(name: 'title', content: 'Flutter Landing Page'),
+            LinkTag(
+              rel: 'canonical',
+              href: 'https://nialixus-landing-page.web.app',
+            )
+          ], child: const HomePage()),
         );
       });
 
@@ -54,7 +38,19 @@ class Routes {
         }
         return DLogWidget(
           'http://localhost${state.uri}',
-          child: ErrorPage(model: ErrorModel.error404),
+          child: Seo.head(
+            tags: [
+              const MetaTag(
+                name: 'title',
+                content: 'Flutter Landing Page : Page Not Found',
+              ),
+              LinkTag(
+                rel: 'canonical',
+                href: 'https://nialixus-landing-page.web.app${state.uri}',
+              )
+            ],
+            child: ErrorPage(model: ErrorModel.error404),
+          ),
         );
       });
 }
