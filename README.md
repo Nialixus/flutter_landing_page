@@ -9,6 +9,7 @@ A responsive landing page template for flutter. Perfect for showcasing your prod
   - [Key Features](#key-features)
   - [Pricing](#pricing)
   - [FAQ](#faq)
+- [Report](#report)
 
 
 <a name="get-started"></a>
@@ -83,4 +84,9 @@ Have questions? Check out your frequently asked questions.
 | --------------------------------------------------- | -------------------------------------------------- |
 | ![Desktop FAQ](https://github.com/Nialixus/flutter_landing_page/assets/45191605/a6f1d13e-e2ef-43ae-af6f-a6ec1cff9839) | ![Pricing FAQ](https://github.com/Nialixus/flutter_landing_page/assets/45191605/bab2fc3b-39ef-4a3a-ae07-ea31afc538a8) |
 
+<a name="report"></a>
+## 🎗 Report
+| Desktop                                             | Mobile                                             |
+| --------------------------------------------------- | -------------------------------------------------- |
+| [![Desktop Performance Report](https://github.com/Nialixus/flutter_landing_page/assets/45191605/d0dae80e-023f-4f61-ab85-f7485be39cb3)](https://pagespeed.web.dev/analysis/https-nialixus-landing-page-web-app/sxq1mf6hd5?form_factor=desktop) | [![Mobile Performance Report](https://github.com/Nialixus/flutter_landing_page/assets/45191605/0af4472d-9d5a-4ede-b165-41988e245a43)](https://pagespeed.web.dev/analysis/https-nialixus-landing-page-web-app/sxq1mf6hd5?form_factor=mobile) |
 
