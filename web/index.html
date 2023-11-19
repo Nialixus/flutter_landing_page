@@ -17,7 +17,7 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   
-  <!-- Manual meta tags -->
+  <!-- Manual tags -->
   <meta name="description" content="A responsive landing page template for flutter. Perfect for showcasing your product or service with a clean lead-in, FAQs, pricing, and key features.">
   <meta name="keywords" content="Flutter, Landing Page, Responsive, Multi-Platform, Template, Flutter Landing Page, Flutter Template">
   <meta name="author" content="Louis Wiwawan">
@@ -33,12 +33,40 @@
   <meta name="google-site-verification" content="ekjwA00Ef5QjgPqrvAU9qyzZI2asdYt4VWhIcGKO-JE" />
   <meta name="yandex-verification" content="be06873aee08833c" />
   <meta http-equiv='content-language' content='en-US'>
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml">
+  <link rel="nofollow" href="https://nialixus-landing-page.web.app/robots.txt">
+  <style>
+    .loader {
+      border: 4px solid transparent; /* Transparent border to create space for the loader */
+      border-top: 4px solid #fff; /* Top border (appears as the loader) */
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      top: 50%; /* Center the loader vertically */
+      left: 50%; /* Center the loader horizontally */
+      transform: translate(-50%, -50%); /* Center the loader precisely */
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    body {
+      background-color: #0D47A1; /* Set the background color here */
+      margin: 0; /* Reset default margin */
+      height: 100vh; /* Ensure full viewport height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+  </style>
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Flutter Landing Page">
-  <meta name="google-site-verification" content="ekjwA00Ef5QjgPqrvAU9qyzZI2asdYt4VWhIcGKO-JE" />
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
@@ -53,10 +81,11 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer=""></script>
-  
+
 </head>
 <body>
   <h1 style="color: rgba(255, 0, 0, 0)">Flutter Landing Page</h1>
+  <div class="loader"></div>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js

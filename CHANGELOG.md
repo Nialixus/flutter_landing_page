@@ -14,3 +14,6 @@
 ## 1.3.0
 - Add Robot.txt
 - Add Sitemap.xml
+
+## 1.4.0
+- Update index.html

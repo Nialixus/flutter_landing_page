@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dart_fusion/dart_fusion.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +11,9 @@ import 'package:meta_seo/meta_seo.dart';
 import 'package:scroll_to_id/scroll_to_id.dart';
 import 'package:seo/seo.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_strategy/url_strategy.dart';
+
+import '../firebase_options.dart';
 
 part 'assets/routes.dart';
 part 'assets/constants.dart';
@@ -40,4 +44,13 @@ class Env {
   static NavigationController controller = NavigationController(
     navigations.first.id,
   );
+
+  static Future<void> initialize() async {
+    setPathUrlStrategy();
+    if (kIsWeb) MetaSEO().config();
+
+    // --------- Remove the line below if you're not setting up firebase ------- //
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+  }
 }
