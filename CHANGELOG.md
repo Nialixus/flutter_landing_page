@@ -17,3 +17,6 @@
 
 ## 1.4.0
 - Update index.html
+
+## 1.4.1
+- Add github link

@@ -49,23 +49,60 @@ class HomePage extends StatelessWidget {
           child: child,
         );
       },
-      child: Builder(builder: (context) {
-        return FloatingActionButton(
-          shape: const CircleBorder(),
-          onPressed: () => Env.controller.onTap(
-            context,
-            id: Env.navigations.first.id,
-          ),
-          child: Seo.link(
-            anchor: 'Go back to top',
-            href: '/?section=${Env.navigations.first.id}',
-            child: const Icon(
-              Icons.arrow_upward_rounded,
-              semanticLabel: 'Go back to top',
-            ),
-          ),
-        );
-      }),
+      child: Builder(
+        builder: (context) {
+          return Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              DButton(
+                onTap: () => launchUrl(Uri.parse('https://github.com'
+                    '/Nialixus'
+                    '/flutter_landing_page')),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  height: kToolbarHeight,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'View the source code in',
+                        style: context.text.bodyMedium?.copyWith(
+                          color: Colors.black,
+                        ),
+                      ),
+                      const DImage(
+                        source: 'https://assets.stickpng.com'
+                            '/images'
+                            '/629b7adc7c5cd817694c3231.png',
+                        size: Size(80.0, 30.0),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const Spacer(),
+              FloatingActionButton(
+                shape: const CircleBorder(),
+                onPressed: () => Env.controller.onTap(
+                  context,
+                  id: Env.navigations.first.id,
+                ),
+                child: Seo.link(
+                  anchor: 'Go back to top',
+                  href: '/?section=${Env.navigations.first.id}',
+                  child: const Icon(
+                    Icons.arrow_upward_rounded,
+                    semanticLabel: 'Go back to top',
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 

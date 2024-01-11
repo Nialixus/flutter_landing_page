@@ -1,10 +1,10 @@
 part of '../env.dart';
 
 class NavigationController extends ValueNotifier<String> {
-  NavigationController(String value) : super(value) {
+  NavigationController(super.value) {
     scroll.addListener(() {
       final newValue = instance.idPosition();
-      if (newValue != null && this.value != newValue) this.value = newValue;
+      if (newValue != null && value != newValue) value = newValue;
     });
   }
 
